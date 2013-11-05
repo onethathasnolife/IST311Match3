@@ -22,7 +22,7 @@ public class optionPane extends JFrame implements ActionListener {
 		setLayout(new GridLayout(4,1));
 		
 		sound = new JButton("Sound");
-		grahpics = new JButton("Grahpics");
+		grahpics = new JButton("Grahpics”);//NICE JOB STEVE
 		misc = new JButton("Misc");
 		main = new JButton("Back To Main Menu");
 		
