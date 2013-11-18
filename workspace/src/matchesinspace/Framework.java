@@ -1,9 +1,16 @@
 package matchesinspace;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  * Framework that controls the game (Game.java) that created it, update it and draw it on the screen.
@@ -96,7 +103,15 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
-    
+    	try
+        {
+            URL landingAreaImgUrl = this.getClass().getResource("/matchesinspace/resources/images/original.png");
+            landingAreaImg = ImageIO.read(landingAreaImgUrl);
+            landingAreaImgWidth = landingAreaImg.getWidth();
+        }
+        catch (IOException ex) {
+            Logger.getLogger(LandingArea.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

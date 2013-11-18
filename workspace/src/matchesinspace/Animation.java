@@ -1,4 +1,4 @@
-package helicopterbattle;
+package matchesinspace;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

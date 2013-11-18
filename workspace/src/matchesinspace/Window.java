@@ -14,7 +14,7 @@ public class Window extends JFrame{
     private Window()
     {
         // Sets the title for this frame.
-        this.setTitle("Game title");
+        this.setTitle("Matches in SPACE!!");
         
         // Sets size of the frame.
         if(false) // Full screen mode

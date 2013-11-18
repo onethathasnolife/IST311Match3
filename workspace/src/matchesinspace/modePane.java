@@ -1,5 +1,5 @@
 package matchesinspace;
 
-public class pausePane {
+public class modePane {
 
 }
