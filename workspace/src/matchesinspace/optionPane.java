@@ -16,7 +16,7 @@ public class optionPane extends JFrame implements ActionListener {
 	
 	public optionPane(){
 		
-		setTitle("WHAT AN AWESOME GAME");
+		setTitle("Matches................IN SPACE!!!!");
 		setSize(400,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

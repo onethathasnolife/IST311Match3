@@ -18,7 +18,7 @@ public homePane(){
 	
 	mypanel = new JPanel();
 	
-	setTitle("WHAT AN AWESOME GAME");
+	setTitle("MATCHES..........IN SPACE!!!!");
 	setSize(400,300);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
