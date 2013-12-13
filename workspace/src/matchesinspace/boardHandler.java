@@ -1,5 +1,5 @@
 package matchesinspace;
 
-public class LoadContent {
+public class boardHandler {
 
 }

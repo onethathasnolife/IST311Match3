@@ -7,13 +7,13 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 
 
-public class BoardUI extends JFrame implements ActionListener,KeyListener {
+public class boardPane extends JFrame implements ActionListener,KeyListener {
 
 private JPanel mainui;
 private JButton testbutton;
-private PauseMenuUI pause;
+private pausePane pause;
 
-public BoardUI(){
+public boardPane(){
 	
 	
 	setSize(1000,1000);
@@ -38,7 +38,7 @@ public void actionPerformed(ActionEvent event){
 @Override
 public void keyPressed(KeyEvent e) {
 	if(e.getKeyChar()=='p'){
-		pause = new PauseMenuUI(mainui);
+		pause = new pausePane(mainui);
 	}	
 }
 

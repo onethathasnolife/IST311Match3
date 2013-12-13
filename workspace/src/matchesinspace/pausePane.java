@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 
-public class PauseMenuUI extends JFrame implements ActionListener {
+public class pausePane extends JFrame implements ActionListener {
 	private JPanel mainui;
-	private MainMenuUI homeui;
+	private homePane homeui;
 	private JPanel mypanel;
 	private JButton mybutton1,mybutton2;
 	
-	public PauseMenuUI(JPanel game){
+	public pausePane(JPanel game){
 		mainui = game;
 		mypanel = new JPanel();
 		setTitle("MATCHES..........IN SPACE!!!!");
@@ -42,7 +42,7 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 		if(e.getSource() == mybutton2){
 			setVisible(false);
 			mainui.setVisible(false);
-			homeui = new MainMenuUI();
+			homeui = new homePane();
 		}
 	}
 }
