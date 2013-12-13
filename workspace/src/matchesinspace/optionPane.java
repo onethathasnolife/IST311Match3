@@ -46,7 +46,10 @@ public class optionPane extends JFrame implements ActionListener {
 		{
 		mainui = new homePane();
 		setVisible(false);
-		}	
+		}
+		if(event.getSource()==sound ||event.getSource()==misc||event.getSource()==grahpics){
+			JOptionPane.showMessageDialog(mainui,"Your Clicking of the Button was noticed, this notice has been dully noted and recorded for furture procescution");
+		}
 	}
 
 }
