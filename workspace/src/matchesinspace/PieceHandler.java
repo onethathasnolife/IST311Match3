@@ -8,7 +8,7 @@ public class PieceHandler {
         
     }
     
-    public Piece generateRandom(int row, int col){
+    public static Piece generateRandom(int row, int col){
         Piece piece = null;
         String pieceType = null;
         
