@@ -9,10 +9,7 @@ import javax.swing.JFrame;
 public class optionPane extends JFrame implements ActionListener {
 
 	private homePane mainui;
-	private JButton sound;
-	private JButton grahpics;
-	private JButton misc;
-	private JButton main;
+	private JButton sound,grahpics,misc,main;
 	
 	public optionPane(){
 		
