@@ -6,12 +6,12 @@ import java.awt.event.*;
 
 import javax.swing.JFrame;
 
-public class optionPane extends JFrame implements ActionListener {
+public class OptionMenuUI extends JFrame implements ActionListener {
 
-	private homePane mainui;
+	private MainMenuUI mainui;
 	private JButton sound,grahpics,misc,main;
 	
-	public optionPane(){
+	public OptionMenuUI(){
 		
 		setTitle("Matches................IN SPACE!!!!");
 		setSize(400,300);
@@ -41,7 +41,7 @@ public class optionPane extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event){
 		if(event.getSource()== main)
 		{
-		mainui = new homePane();
+		mainui = new MainMenuUI();
 		setVisible(false);
 		}
 		if(event.getSource()==sound ||event.getSource()==misc||event.getSource()==grahpics){

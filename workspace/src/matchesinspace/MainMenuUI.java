@@ -4,9 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 
-public class homePane extends JFrame implements ActionListener{
-	private optionPane options;
-	private boardPane mainui;
+public class MainMenuUI extends JFrame implements ActionListener{
+	private OptionMenuUI options;
+	private BoardUI mainui;
 	private JPanel mypanel;
 	private JPanel mypanel2;
 	private JButton mybutton1;
@@ -14,7 +14,7 @@ public class homePane extends JFrame implements ActionListener{
 	private JButton mybutton3;
 	private JLabel mylabel;
 	
-public homePane(){
+public MainMenuUI(){
 	
 	mypanel = new JPanel();
 	
@@ -42,17 +42,17 @@ public homePane(){
 public void actionPerformed(ActionEvent event){
 	if(event.getSource()== mybutton1)
 	{
-	mainui = new boardPane();
+	mainui = new BoardUI();
 	setVisible(false);
 	}
 	if(event.getSource()== mybutton2)
 	{
-	mainui = new boardPane();
+	mainui = new BoardUI();
 	setVisible(false);
 	}
 	if(event.getSource()== mybutton3)
 	{
-	options = new optionPane();
+	options = new OptionMenuUI();
 	
 	setVisible(false);
 	}	
