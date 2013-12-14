@@ -6,14 +6,20 @@ import java.awt.event.*;
 
 import javax.swing.JFrame;
 
-
+/**
+ * 
+ * Shows main game information board
+ *
+ */
 public class GameUI extends JFrame implements ActionListener,KeyListener {
 
 private JPanel mainui;
 private JButton testbutton;
 private PauseMenuUI pause;
-
-public BoardUI(){
+/**
+ * Sets up basic information on the game board
+ */
+public GameUI(){
 	
 	
 	setSize(1000,1000);

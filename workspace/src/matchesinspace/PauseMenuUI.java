@@ -5,13 +5,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
-
+/**
+ * 
+ * Contains all information related to handling the pause menu UI
+ *
+ */
 public class PauseMenuUI extends JFrame implements ActionListener {
 	private JPanel mainui;
 	private MainMenuUI homeui;
 	private JPanel mypanel;
 	private JButton mybutton1,mybutton2;
-	
+	/**
+	 * Constructor, sets up information related to the UI
+	 * @param game The current state of the given UI, to return 
+	 */
 	public PauseMenuUI(JPanel game){
 		mainui = game;
 		mypanel = new JPanel();
@@ -34,6 +41,10 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 		
 	}
 	@Override
+	/**
+	 * Handles all information related to button presses
+	 * @param event the event that can perform an action
+	 */
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == mybutton1){
 			setVisible(false);

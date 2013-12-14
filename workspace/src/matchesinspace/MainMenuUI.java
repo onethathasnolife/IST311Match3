@@ -3,17 +3,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
-
+/**
+ * 
+ * Contains all information related to the main menu UI
+ *
+ */
 public class MainMenuUI extends JFrame implements ActionListener{
 	private OptionMenuUI options;
 	private BoardUI mainui;
-	private JPanel mypanel;
-	private JPanel mypanel2;
-	private JButton mybutton1;
-	private JButton mybutton2;
-	private JButton mybutton3;
+	private JPanel mypanel,mypanel2;
+	private JButton mybutton1,mybutton2,mybutton3;
 	private JLabel mylabel;
-	
+/**
+ * Constructor, sets up main information of the UI
+ */
 public MainMenuUI(){
 	
 	mypanel = new JPanel();
@@ -39,6 +42,10 @@ public MainMenuUI(){
 }
 
 @Override
+/**
+ * Handles information to button presses on this UI
+ * @param event set of event that can have an action
+ */
 public void actionPerformed(ActionEvent event){
 	if(event.getSource()== mybutton1)
 	{

@@ -1,13 +1,22 @@
 package matchesinspace;
 
 import java.util.Random;
-
+/**
+ * 
+ * Handles information related to a piece, sets up what piece relates to what color
+ *
+ */
 public class PieceHandler {
     
     public PieceHandler(){
         
     }
-    
+    /**
+     * Generates a random number, sets a piece to a certain type based on what is generated
+     * @param row Given row of a piece
+     * @param col Given column of a piece
+     * @return Returns the current piece information
+     */
     public static Piece generateRandom(int row, int col){
         Piece piece = null;
         String pieceType = null;

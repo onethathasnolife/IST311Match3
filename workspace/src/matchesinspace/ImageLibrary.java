@@ -12,11 +12,14 @@ import java.util.HashMap;
 import java.awt.image.BufferedImage;
 
 /**
+ * Loads information related to images found in the game
  *
- * @author Bob
  */
 public class ImageLibrary {
-    
+    /**
+     * @field imageCollection list of all images
+     * @field DIRECTORY string of directory to find images
+     */
     private HashMap<Piece.pieceType, BufferedImage> imageCollection;
     static final String DIRECTORY = "/src/resources/images/";
     

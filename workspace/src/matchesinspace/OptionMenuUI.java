@@ -5,12 +5,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.JFrame;
-
+/**
+ * 
+ * Handles all information related to the Options Menu UI
+ *
+ */
 public class OptionMenuUI extends JFrame implements ActionListener {
 
 	private MainMenuUI mainui;
 	private JButton sound,grahpics,misc,main;
-	
+	/**
+	 * Constructor, sets up information on how the UI is constructed
+	 */
 	public OptionMenuUI(){
 		
 		setTitle("Matches................IN SPACE!!!!");
@@ -38,6 +44,10 @@ public class OptionMenuUI extends JFrame implements ActionListener {
 	}
 	
 	@Override
+	/**
+	 * Handles all information related to button presses
+	 * @param event the event that can perform an action
+	 */
 	public void actionPerformed(ActionEvent event){
 		if(event.getSource()== main)
 		{
