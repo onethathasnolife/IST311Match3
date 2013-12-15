@@ -54,7 +54,7 @@ public class Piece {
     
         if(this.type != pieceType.DELETED){
             this.pieceIcon = new ImageIcon();
-            System.out.println("Type: "+type);
+            System.out.println("Adding Piece: "+type);
             this.pieceIcon.setImage(GameHandler.imageLibrary.getImage(type));
         } // if : !DELETED
     } // Piece : Constructor
