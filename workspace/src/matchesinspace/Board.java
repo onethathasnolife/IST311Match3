@@ -17,7 +17,7 @@ public final class Board {
     BoardGenerator board;
     
     public Board(GameHandler game){
-        BoardGenerator board = new BoardGenerator();    
+        board = new BoardGenerator();    
     }
     
     public void initialize(){

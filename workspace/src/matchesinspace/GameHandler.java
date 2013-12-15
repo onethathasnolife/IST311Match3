@@ -210,8 +210,8 @@ public final class GameHandler extends JComponent {
      * @param g Current graphic being painted
      */
     private void drawPieces(Graphics g){
-        for(int row = 0; row < BoardGenerator.HORIZONTAL_PIECES; row++){
-            for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
+        for(int row = 0; row < 8; row++){
+            for(int col = 0; col < 8; col++){
                 Piece piece = gameBoard.getPieceAt(row, col);
                 piece.draw(g);
             } // for : col
