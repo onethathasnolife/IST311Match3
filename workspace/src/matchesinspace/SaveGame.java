@@ -17,9 +17,11 @@ public class SaveGame {
             
             for(int row = 0; row < VERTICAL_PIECES; row++){
                 for(int col = 0; col < HORIZONTAL_PIECES; col++){
-                    printWriter.println (pieces[row][col].type.toString()+",");      
+                    printWriter.println (pieces[row][col].type.toString());      
                 }
             }
+            printWriter.println(GameUI.getScore());
+            printWriter.println(GameUI.getLevel());
             printWriter.close ();
         }
         catch(Exception e){

@@ -40,7 +40,7 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 	
             add(resumeBTN);
             add(savequitBTN);
-            
+         
             setVisible(true);	
 	} // PauseMenuUI : Constructor 
         

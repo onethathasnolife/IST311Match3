@@ -21,9 +21,9 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     private PauseMenuUI pause;
 
     private JLabel textScore;
-    private JLabel score;
+    public static JLabel score;
     private JLabel textLevel;
-    private JLabel level;
+    public static JLabel level;
     private JLabel textCombo;
     private JLabel combo;
     private JLabel textRow;
@@ -132,7 +132,15 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     public void setColumn(int col){
         this.col.setText(Integer.toString(col));
     } // setColumn
-
+    
+    public static int getScore(){
+        return Integer.parseInt(score.getText());
+    } // getScore
+    
+    public static int getLevel(){
+        return Integer.parseInt(level.getText());
+    } // getLevel
+    
     public void actionPerformed(ActionEvent evt){
 	Object obj = evt.getSource();
         /*
