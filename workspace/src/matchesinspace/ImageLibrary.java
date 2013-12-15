@@ -16,59 +16,60 @@ public class ImageLibrary {
      * @field DIRECTORY string of directory to find images
      */
     private HashMap<Piece.pieceType, BufferedImage> imageCollection;
-    static final String DIRECTORY = "/src/resources/images/";
+    static final String DIRECTORY = "src/resources/images/";
     
     public ImageLibrary(){
         imageCollection = new HashMap(8);
         BufferedImage img;
-        
+        System.out.println("ImageLibrary - Building");
         try{
             img = ImageIO.read(new File(DIRECTORY + "bluePlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "bluePlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "greenPlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "greenPlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "greyPlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "greyPlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "orangePlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "orangePlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "purplePlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "purplePlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "redPlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "redPlanet.png");
         } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "yellowPlanet.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "yellowPlanet.png");
         } // catch
         
+        System.out.println("ImageLibrary - Built");
     } // ImageLibrary
     
     BufferedImage getImage(Piece.pieceType type){
         return imageCollection.get(type);
-    }
+    } // getImage
     
-}
+} // ImageLibrary

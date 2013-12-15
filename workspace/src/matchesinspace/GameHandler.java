@@ -15,6 +15,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import javax.swing.JComponent;
+import static matchesinspace.ImageLibrary.DIRECTORY;
 
 
 /**
@@ -34,15 +35,19 @@ public final class GameHandler extends JComponent {
     public static SoundLibrary soundLibrary = new SoundLibrary();
     public BufferedImage boardImg;
     public ImageIcon boardIcon;
-    static final String DIRECTORY   = "src/images/";
+    static final String DIRECTORY   = "src/resources/images/";
     
     public GameHandler(GameUI gamePanel){
         try{
             boardImg = ImageIO.read(new File(DIRECTORY+"board.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+DIRECTORY + "board.png");
         } // catch
+        
+        System.out.println("GameHandler - Initializing Game");
+        initializeGame();
+        System.out.println("GameHandler - Initialized");
         
         this.boardIcon = new ImageIcon();
         this.boardIcon.setImage(this.boardImg);
@@ -53,7 +58,7 @@ public final class GameHandler extends JComponent {
         this.addMouseListener(new MouseListener(this));
     } // GameHandler : Constructor
     
-    public void initializeGame(){
+    public void initializeGame(){     
         gameBoard = new BoardHandler();
         
         while(!gameBoard.isStable()) {
@@ -70,8 +75,8 @@ public final class GameHandler extends JComponent {
         gamePanel.setLevel(level);
         gamePanel.setRow(-1);
         gamePanel.setColumn(-1);
-        repaint();
         
+        repaint();      
         //Game.soundLibrary.playAudio("fall");
     } // intitializeGame
     

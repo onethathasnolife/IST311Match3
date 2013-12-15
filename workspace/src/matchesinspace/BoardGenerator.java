@@ -22,7 +22,10 @@ public final class BoardGenerator {
      */
     public BoardGenerator(){
         pieces = new Piece[VERTICAL_PIECES][HORIZONTAL_PIECES];
+        
+        System.out.println("BoardGenerator - Generating Board");
         initializeBoard();
+        System.out.println("BoardGenerator - Generated");
     } // BoardGenerator : Constructor      
     
     /**
