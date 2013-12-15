@@ -7,7 +7,7 @@ import static matchesinspace.BoardGenerator.VERTICAL_PIECES;
 
 public class LoadGame {
     
-    public static Piece[][] pieces;
+    public static Piece[][] pieces = new Piece[8][8];
     public static int score = 0;
     public static int level = 0;
     
@@ -16,9 +16,11 @@ public class LoadGame {
         File file = new File("src/saves/save.dat");
         try{
             BufferedReader reader = new BufferedReader(new FileReader(file));
+            System.out.println("Save Found");
             for(int row = 0; row < VERTICAL_PIECES; row++){
                 for(int col = 0; col < HORIZONTAL_PIECES; col++){
                     String type = reader.readLine();
+                    System.out.println("Piece Read: "+type+".");
                     pieces[row][col] = PieceHandler.generatePiece(row, col, type);
                 } // for : col
             } // for : row

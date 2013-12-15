@@ -42,7 +42,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         initializeComponents();      
 	this.setVisible(true);
 	addKeyListener(this);
-              
+        initializeGame();
+        
         System.out.println("GameUI - UI Built");
     } // GameUI : Constructor
     
@@ -55,7 +56,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         initializeComponents();      
 	this.setVisible(true);
 	addKeyListener(this);
-              
+        initializeGame(loaded);
+        
         System.out.println("GameUI - Loaded - UI Built");
     } // GameUI : Constructor - loaded
     
@@ -90,17 +92,25 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         statsPanel.add(row);
         statsPanel.add(textCol);
         statsPanel.add(col);
-        //statsPanel.add(glitched);
         gamePanel.add(statsPanel, BorderLayout.WEST);
-        //glitched.addActionListener(this);
+        
         System.out.println("GameUI - Building Game");
-        game = new GameHandler(this);
-        game.initializeGame();
+        game = new GameHandler(this); 
         gamePanel.add(game.getGameHandler(), BorderLayout.CENTER);
         System.out.println("GameUI - Game Running");
         
         this.add(gamePanel);
     } // initializeComponents
+    
+    private void initializeGame(){
+        game.initializeGame();
+    } // initializeGame
+    
+    private void initializeGame(Boolean loaded){
+        if(loaded){
+            game.initializeGame(loaded);
+        } // if : loaded
+    } // initializeGame - loaded
     
     private void windowSetup(){
         //Toolkit kit = Toolkit.getDefaultToolkit();

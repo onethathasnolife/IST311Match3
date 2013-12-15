@@ -18,11 +18,19 @@ public final class Board {
     
     public Board(GameHandler game){
         board = new BoardGenerator();    
-    }
+    } // Board : Constructor
+    
+    public Board(GameHandler game, Boolean loaded){
+        
+    } // do nothing
     
     public void initialize(){
         pieces = board.getBoard();
-    }
+    } // initialize
+    
+    public void initializeLoaded(){
+        pieces = LoadGame.LoadPieces();
+    } // initializeLoaded
     
     /**
      * Swaps pieces based on what piece is selected and direction of second swap

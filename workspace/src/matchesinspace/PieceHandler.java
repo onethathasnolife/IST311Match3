@@ -51,26 +51,27 @@ public class PieceHandler {
     
     public static Piece generatePiece(int row, int col, String type){
         Piece piece = null;
-        
-        if(type.equals(Piece.pieceType.BLUE_PLANET)){
+        System.out.println("type g:"+type+".");
+        if(type.equals(Piece.pieceType.BLUE_PLANET.toString())){
             piece = new Piece(Piece.pieceType.BLUE_PLANET, row, col);
         } // if : blue
-        if(type.equals(Piece.pieceType.GREEN_PLANET)){
+        if(type.equals(Piece.pieceType.GREEN_PLANET.toString())){
             piece = new Piece(Piece.pieceType.GREEN_PLANET, row, col);
         } // if : green
-        if(type.equals(Piece.pieceType.GREY_PLANET)){
+        if(type.equals(Piece.pieceType.GREY_PLANET.toString())){
             piece = new Piece(Piece.pieceType.GREY_PLANET, row, col);
         } // if : grey
-        if(type.equals(Piece.pieceType.ORANGE_PLANET)){
+        if(type.equals(Piece.pieceType.ORANGE_PLANET.toString())){
             piece = new Piece(Piece.pieceType.ORANGE_PLANET, row, col);
         } // if : orange
-        if(type.equals(Piece.pieceType.PURPLE_PLANET)){
+        if(type.equals(Piece.pieceType.PURPLE_PLANET.toString())){
             piece = new Piece(Piece.pieceType.PURPLE_PLANET, row, col);
         } // if : purple
-        if(type.equals(Piece.pieceType.RED_PLANET)){
+        if(type.equals(Piece.pieceType.RED_PLANET.toString())){
+            System.out.println("Red Match");
             piece = new Piece(Piece.pieceType.RED_PLANET, row, col);
         } // if : red
-        if(type.equals(Piece.pieceType.YELLOW_PLANET)){
+        if(type.equals(Piece.pieceType.YELLOW_PLANET.toString())){
             piece = new Piece(Piece.pieceType.YELLOW_PLANET, row, col);
         } // if : yellow
         

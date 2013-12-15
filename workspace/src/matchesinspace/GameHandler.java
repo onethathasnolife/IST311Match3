@@ -31,7 +31,6 @@ public final class GameHandler extends JComponent {
      * @field level Current level of the game - meaningless
      * @field combo Current combo of matches
      * @field imageLibrary ImageLibrary which contains all information related to images being sourced
-     * @field soundLibrary SoundLibrary which contains all information related to sounds being sourced
      * @field boardImg BufferedImage of the current board, containing board images and pieces
      * @field boardIcon ImageIcon of the board which is used
      * @field DIRECTORY Current directory to find information used in this class
@@ -93,8 +92,30 @@ public final class GameHandler extends JComponent {
         gameUI.setRow(-1);
         gameUI.setColumn(-1);
         
-        repaint();      
-        //Game.soundLibrary.playAudio("fall");
+        repaint();
+    } // intitializeGame
+    
+    /**
+     * Initializes many aspects of the game not found in the constructor
+     */
+    public void initializeGame(Boolean loaded){
+        gameBoard = new Board(this, loaded);
+        gameBoard.initializeLoaded();
+        boardHandler = new BoardHandler(gameBoard, this);
+        boardUI = new BoardUI(gameBoard, this, null);
+        
+        started = true;
+        focus = null;
+        score = LoadGame.getScore();
+        combo = 0;
+        level = LoadGame.getLevel(); 
+        gameUI.setScore(score);
+        gameUI.setCombo(combo);
+        gameUI.setLevel(level);
+        gameUI.setRow(-1);
+        gameUI.setColumn(-1);
+        
+        repaint();
     } // intitializeGame
     
     /**
@@ -114,7 +135,6 @@ public final class GameHandler extends JComponent {
             boardHandler.calculateDrop();
             boardUI.setAnimationType(BoardUI.animationType.CASCADE);
             boardUI.animateCascade();
-            //Game.soundLibrary.playAudio("fall");
         } // if : !stable
     } // updateGame
     /**
@@ -166,8 +186,6 @@ public final class GameHandler extends JComponent {
         if(focus == null){
             focus = clicked;
             clicked.inFocus = true;
-            
-            //Game.soundLibrary.playAudio("select");
         } // if : focus == null
         else{
             if(focus.equals(clicked)){
