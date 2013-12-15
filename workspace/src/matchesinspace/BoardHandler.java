@@ -101,13 +101,18 @@ public class BoardHandler implements ActionListener{
     } // collectFallingPieces
     
     //***********ALGORITHMS***********
-    
+    /**
+     * Checks if there is any current matches, if none found, returns no matches found.
+     * @return Returns the array list stating that there are not current matches moving or in progress
+     */
     public boolean isStable(){
         checkRows();
         checkColumns();
         return matches.isEmpty();
     } // isStable
-    
+    /**
+     * Removes a match when called, handles information regarding it.
+     */
     public void removeMatches(){
         markDeleted();
         calculateDrop();
@@ -115,7 +120,9 @@ public class BoardHandler implements ActionListener{
         fillEmpty();
         endCascade();
     } // removeMatches
-    
+    /**
+     * Matches a match as deleted, adds to a combo and adds to the score
+     */
     public void markDeleted(){
         int combo = 0;
         int score = 0;
@@ -131,7 +138,9 @@ public class BoardHandler implements ActionListener{
         gamePanel.addScore(score);
         gamePanel.setCombo(combo);
     } // markDeleted
-    
+    /**
+     * Calculates the drop from a resulting match
+     */
     public void calculateDrop(){
         for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
             for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >=0; row--){
@@ -148,7 +157,9 @@ public class BoardHandler implements ActionListener{
             } // for : row
         } // for : col
     } // calculateDrop
-    
+    /**
+     * Applies animations and other information related to dropping, as well as moving pieces.
+     */
     public void applyDrop(){
         for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
             for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >= 0; row--){
@@ -162,7 +173,9 @@ public class BoardHandler implements ActionListener{
             } // for : row
         } // for : col
     } // applyDrop
-    
+    /**
+     * Generates new pieces for pieces that are missing
+     */
     public void fillEmpty(){
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -174,7 +187,9 @@ public class BoardHandler implements ActionListener{
             } // for : col
         } // for : row
     } // fillEmpty
-    
+    /**
+     * Ends the cascade of multiple piece matches happening at the same time or in a combo
+     */
     public void endCascade(){
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -185,7 +200,9 @@ public class BoardHandler implements ActionListener{
             } // for : col
         } // for : row
     } // endCascade
-    
+    /**
+     * Checks rows if there is matches.
+     */
     private void checkRows(){
         int temp;
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
@@ -210,7 +227,9 @@ public class BoardHandler implements ActionListener{
             } // for : col
         } // for : row
     } // checkRows
-    
+    /**
+     * Checks columns if there is any matches
+     */
     private void checkColumns(){
         int temp;
         for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -237,15 +256,24 @@ public class BoardHandler implements ActionListener{
     } // checkColumns
     
     //***********ANIMATIONS***********
-    
+    /**
+     * Sets the animation type of the object
+     * @param animationType Sets the current animation type of the object, given animation type
+     */
     public void setAnimationType(animationType animationType){
         this.animationType = animationType;
     } // setAnimationType
-    
+    /**
+     * Returns the Animation type 
+     * @return returns the current animation type
+     */
     public animationType getAnimationType(){
         return animationType;
     } // getAnimationType
-    
+    /**
+     * Tells the current frame the animation is in
+     * @return the current frame number in sequence
+     */
     public int getCurrentFrame(){
         return frame;
     } // getCurrentFrame
@@ -255,7 +283,9 @@ public class BoardHandler implements ActionListener{
         this.p2 = p2;
         timer.start();
     } // animateSwap
-    
+    /**
+     * Ends swap animation
+     */
     public void endSwapAnimation(){
         timer.stop();
         frame = 0;
@@ -263,13 +293,17 @@ public class BoardHandler implements ActionListener{
         gamePanel.repaint();
         gamePanel.updateGame();
     } // endSwapAnimation
-    
+    /**
+     * Animates the cascade for a time
+     */
     public void animateCascade(){
         fallingPieces = new ArrayList();
         this.collectFallingPieces(fallingPieces);
         timer.start();
     } // animateCascade
-    
+    /**
+     * Tells when to end the Cascade Animation
+     */
     public void endCascadeAnimation(){
         timer.stop();
         frame = 0;
