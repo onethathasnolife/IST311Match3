@@ -82,6 +82,7 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         //glitched.addActionListener(this);
         System.out.println("GameUI - Building Game");
         game = new GameHandler(this);
+        game.initializeGame();
         gamePanel.add(game.getGameHandler(), BorderLayout.CENTER);
         System.out.println("GameUI - Game Running");
         
@@ -89,18 +90,27 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     } // initializeComponents
     
     private void windowSetup(){
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
+        //Toolkit kit = Toolkit.getDefaultToolkit();
+        //Dimension screenSize = kit.getScreenSize();
         //double screenHeight = screenSize.height*.75;
         //double screenWidth  = screenSize.width*.75;
         int screenHeight = 625;
         int screenWidth = 940;
-        setSize((int)screenWidth,(int)screenHeight);
+        setSize(screenWidth,screenHeight);
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("MATCHES..........IN SPACE!!!!");
         setLayout(new BorderLayout());
-        setDefaultCloseOperation (EXIT_ON_CLOSE);   
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){
+                public void windowClosing(WindowEvent e){
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure?","Leaving Space",dialogButton);
+                    if(dialogResult == JOptionPane.YES_OPTION){
+                        System.exit(0);
+                    }
+                }
+            });
     } // windowSetup
     
     public void setScore(int score){

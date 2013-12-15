@@ -26,7 +26,7 @@ public class BoardUI implements ActionListener{
         p2 = null;
         fallingPieces = null;
         frame = 0;
-        timer = new Timer(0, this);
+        timer = new Timer(10, this);
     }
     
     //***********ANIMATIONS***********

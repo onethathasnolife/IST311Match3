@@ -57,23 +57,18 @@ public final class GameHandler extends JComponent {
      * @param gameUI GameUI which is used and updated
      */
     public GameHandler(GameUI gameUI){
+        this.gameUI = gameUI;
         try{
             boardImg = ImageIO.read(new File(DIRECTORY+"board2.png"));
         } // try
         catch(IOException e){
             System.out.println(e.getMessage()+DIRECTORY + "board2.png");
         } // catch
-        this.gameUI = gameUI;
-        System.out.println("GameHandler - Initializing Game");
-        initializeGame();
-        System.out.println("GameHandler - Initialized");
-        
         this.boardIcon = new ImageIcon();
-        this.boardIcon.setImage(this.boardImg);
-        
+        this.boardIcon.setImage(this.boardImg);      
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(800,600)); 
-        this.addMouseListener(new MouseListener(this));
+        this.addMouseListener(new MouseListener(this)); 
     } // GameHandler : Constructor
     
     /**
