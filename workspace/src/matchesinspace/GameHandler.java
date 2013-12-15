@@ -56,10 +56,10 @@ public final class GameHandler extends JComponent {
      */
     public GameHandler(GameUI gamePanel){
         try{
-            boardImg = ImageIO.read(new File(DIRECTORY+"board.png"));
+            boardImg = ImageIO.read(new File(DIRECTORY+"board2.png"));
         } // try
         catch(IOException e){
-            System.out.println(e.getMessage()+DIRECTORY + "board.png");
+            System.out.println(e.getMessage()+DIRECTORY + "board2.png");
         } // catch
         this.gamePanel = gamePanel;
         System.out.println("GameHandler - Initializing Game");
@@ -197,7 +197,7 @@ public final class GameHandler extends JComponent {
      * Paints the boardIcon
      */
     public void paintComponent(Graphics g){
-        this.boardIcon.paintIcon(null, g, 0, 0);;
+        this.boardIcon.paintIcon(null, g, 0, 0);
         drawPieces(g);
     } // paintComponent
     /**

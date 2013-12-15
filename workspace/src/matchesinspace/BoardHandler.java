@@ -46,7 +46,11 @@ public class BoardHandler implements ActionListener{
         this.gamePanel = gamePanel;
         this.matches = new ArrayList();
         this.fallingPieces = null;
-        timer = new Timer(30, this);
+        this.timer = new Timer(10, this);
+        this.frame = 0;
+        this.p1 = null;
+        this.p2 = null;
+        this.animationType = null;
         BoardGenerator board = new BoardGenerator();
         pieces = board.getBoard();    
     } // BoardHandler : Constructor
@@ -323,7 +327,7 @@ public class BoardHandler implements ActionListener{
     public void endCascadeAnimation(){
         timer.stop();
         frame = 0;
-        gamePanel.cleanBoard();
+        //gamePanel.cleanBoard();
         gamePanel.repaint();
         gamePanel.updateGame();
     } // endCascadeAnimation
