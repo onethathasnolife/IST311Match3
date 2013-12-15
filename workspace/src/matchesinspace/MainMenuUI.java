@@ -29,19 +29,20 @@ public class MainMenuUI extends JFrame implements ActionListener{
         
         this.initializeComponents();
 	this.setVisible(true);
+        this.setSize(450,300);
+        this.setLocationRelativeTo(null);
         
         System.out.println("MainMenuUI - Running");
     } // MainMenuUI : Constructor
     
     public void initializeComponents(){
-        windowSetup();
-        
+        setTitle("MATCHES..........IN SPACE!!!!");
+        setLocationRelativeTo(null);
         newBTN      = new JButton("New Game");
 	loadBTN     = new JButton("Load Game");
 	settingsBTN = new JButton("Settings");
 	
-        mainMenuPanel = new JPanel(new BorderLayout());
-        mainMenuPanel.setSize(300, 300);
+        mainMenuPanel = new JPanel(new GridLayout(3,1));
         mainMenuPanel.add(newBTN, BorderLayout.NORTH);
 	mainMenuPanel.add(loadBTN, BorderLayout.CENTER);
 	mainMenuPanel.add(settingsBTN, BorderLayout.SOUTH);
@@ -52,19 +53,7 @@ public class MainMenuUI extends JFrame implements ActionListener{
         
         this.add(mainMenuPanel);
     } // initializeComponents
-    
-    private void windowSetup(){
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = kit.getScreenSize();
-        int screenHeight = screenSize.height;
-        int screenWidth  = screenSize.width;
-        setSize(screenWidth,screenHeight);
-        setLocationByPlatform(true);
-        setTitle("MATCHES..........IN SPACE!!!!");
-        setLayout(new BorderLayout());
-        setDefaultCloseOperation (EXIT_ON_CLOSE);   
-    } // windowSetup
-    
+     
     public void actionPerformed(ActionEvent evt){
         Object obj = evt.getSource();
     

@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  * 
@@ -43,6 +45,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     } // GameUI : Constructor
     
     public void initializeComponents(){
+        windowSetup();
+        
         gamePanel   = new JPanel(new BorderLayout());
         statsPanel  = new JPanel();
         
@@ -57,6 +61,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         textCol     = new JLabel("column", JLabel.CENTER);
         col         = new JLabel("-1",JLabel.CENTER);
         
+        Border lineBorder = BorderFactory.createLineBorder(Color.black);
+        statsPanel.setBorder(lineBorder);
         statsPanel.setLayout(new GridLayout(6,2));
         statsPanel.add(textScore);
         statsPanel.add(score);
@@ -71,6 +77,18 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         gamePanel.add(statsPanel, BorderLayout.WEST);
         this.add(gamePanel);
     } // initializeComponents
+    
+    private void windowSetup(){
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height/2;
+        int screenWidth  = screenSize.width/2;
+        setSize(screenWidth,screenHeight);
+        setLocationRelativeTo(null);
+        setTitle("MATCHES..........IN SPACE!!!!");
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation (EXIT_ON_CLOSE);   
+    } // windowSetup
     
     public void setScore(int score){
         this.score.setText(Integer.toString(score));
