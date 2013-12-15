@@ -30,6 +30,7 @@ public class MainMenuUI extends JFrame implements ActionListener{
         this.initializeComponents();
 	this.setVisible(true);
         this.setSize(450,300);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         
         System.out.println("MainMenuUI - Running");
