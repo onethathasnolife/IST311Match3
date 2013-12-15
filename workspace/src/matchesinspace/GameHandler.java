@@ -51,7 +51,6 @@ public final class GameHandler extends JComponent {
         
         this.boardIcon = new ImageIcon();
         this.boardIcon.setImage(this.boardImg);
-        started = false;
         
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(800,600)); 
@@ -61,7 +60,6 @@ public final class GameHandler extends JComponent {
     public void initializeGame(){     
         gameBoard = new BoardHandler(this);
         
-        started = true;
         focus = null;
         score = 0;
         combo = 0;
@@ -79,6 +77,10 @@ public final class GameHandler extends JComponent {
         repaint();      
         //Game.soundLibrary.playAudio("fall");
     } // intitializeGame
+    
+    public GameHandler getGameHandler(){
+        return this;
+    } // getGameHandler
     
     public void updateGame(){
         if (!gameBoard.isStable()) {
@@ -148,10 +150,12 @@ public final class GameHandler extends JComponent {
     } // clickPerformed
     
     public void paintComponent(Graphics g){
+        System.out.println("GameHandler - Painting Board");
         this.boardIcon.paintIcon(null, g, 0, 0);
-        if(started){
-            drawPieces(g);
-        } // if : started
+        System.out.println("GameHandler - Board Painted");
+        System.out.println("GameHandler - Painting Pieces");
+        drawPieces(g);
+        System.out.println("GameHandler - Painting Completed");
     } // paintComponent
     
     private void drawPieces(Graphics g){

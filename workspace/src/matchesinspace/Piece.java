@@ -72,15 +72,17 @@ public class Piece {
     } // isNextTo
     
     public void draw(Graphics g){
+        System.out.println("Piece - Painting Pieces");
         Graphics2D g2 = (Graphics2D)g;
         if(!type.equals(Piece.pieceType.DELETED)){
-            pieceIcon.paintIcon(null, g, anim_col, anim_row);
+            pieceIcon.paintIcon(null, g2, anim_col, anim_row);
         } // if : DELETED
         if(inFocus){
             ImageIcon focusIcon = new ImageIcon();
             focusIcon.setImage(GameHandler.imageLibrary.getImage(Piece.pieceType.FOCUSED));
-            focusIcon.paintIcon(null, g, anim_col, anim_row);
-        } // if : inFocus 
+            focusIcon.paintIcon(null, g2, anim_col, anim_row);
+        } // if : inFocus
+        System.out.println("Piece - Painting Completed");
     } // draw
     
     public void moveRow(int step, int direction){

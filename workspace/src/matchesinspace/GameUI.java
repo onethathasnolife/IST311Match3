@@ -78,6 +78,7 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         
         System.out.println("GameUI - Building Game");
         GameHandler game = new GameHandler(this);
+        gamePanel.add(game.getGameHandler(), BorderLayout.CENTER);
         System.out.println("GameUI - Game Running");
         
         this.add(gamePanel);
