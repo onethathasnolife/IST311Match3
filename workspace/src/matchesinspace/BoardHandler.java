@@ -42,9 +42,12 @@ public class BoardHandler implements ActionListener{
     /**
      * Constructor sets up information, gets pieces/board array.
      */
-    public BoardHandler(){
+    public BoardHandler(GameHandler gamePanel){
+        this.gamePanel = gamePanel;
+        this.matches = new ArrayList();
+        this.fallingPieces = null;  
         BoardGenerator board = new BoardGenerator();
-        pieces = board.getBoard();
+        pieces = board.getBoard();    
     } // BoardHandler : Constructor
     
     /**

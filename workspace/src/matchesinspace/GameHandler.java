@@ -44,7 +44,7 @@ public final class GameHandler extends JComponent {
         catch(IOException e){
             System.out.println(e.getMessage()+DIRECTORY + "board.png");
         } // catch
-        
+        this.gamePanel = gamePanel;
         System.out.println("GameHandler - Initializing Game");
         initializeGame();
         System.out.println("GameHandler - Initialized");
@@ -52,18 +52,14 @@ public final class GameHandler extends JComponent {
         this.boardIcon = new ImageIcon();
         this.boardIcon.setImage(this.boardImg);
         started = false;
-        this.gamePanel = gamePanel;
+        
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(800,600)); 
         this.addMouseListener(new MouseListener(this));
     } // GameHandler : Constructor
     
     public void initializeGame(){     
-        gameBoard = new BoardHandler();
-        
-        while(!gameBoard.isStable()) {
-            gameBoard.removeMatches();
-        } // while : !stable
+        gameBoard = new BoardHandler(this);
         
         started = true;
         focus = null;
@@ -75,6 +71,10 @@ public final class GameHandler extends JComponent {
         gamePanel.setLevel(level);
         gamePanel.setRow(-1);
         gamePanel.setColumn(-1);
+        
+        while(!gameBoard.isStable()) {
+            gameBoard.removeMatches();
+        } // while : !stable
         
         repaint();      
         //Game.soundLibrary.playAudio("fall");
