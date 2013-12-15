@@ -30,6 +30,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     private JLabel row;
     private JLabel textCol;
     private JLabel col;
+    private JButton glitched;
+    GameHandler game;
     
     /**
     * Sets up basic information on the game board
@@ -60,6 +62,7 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         row         = new JLabel("-1",JLabel.CENTER);
         textCol     = new JLabel("column", JLabel.CENTER);
         col         = new JLabel("-1",JLabel.CENTER);
+        //glitched    = new JButton("Glitched");
         
         Border lineBorder = BorderFactory.createLineBorder(Color.black);
         statsPanel.setBorder(lineBorder);
@@ -74,10 +77,11 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         statsPanel.add(row);
         statsPanel.add(textCol);
         statsPanel.add(col);
+        //statsPanel.add(glitched);
         gamePanel.add(statsPanel, BorderLayout.WEST);
-        
+        //glitched.addActionListener(this);
         System.out.println("GameUI - Building Game");
-        GameHandler game = new GameHandler(this);
+        game = new GameHandler(this);
         gamePanel.add(game.getGameHandler(), BorderLayout.CENTER);
         System.out.println("GameUI - Game Running");
         
@@ -119,8 +123,13 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         this.col.setText(Integer.toString(col));
     } // setColumn
 
-    public void actionPerformed(ActionEvent event){
-	
+    public void actionPerformed(ActionEvent evt){
+	Object obj = evt.getSource();
+        /*
+        if(obj == glitched){
+            System.out.println("Glitched");
+            game = new GameHandler(this);        
+        }*/
     } // actionPerformed
     
     public void keyPressed(KeyEvent e){

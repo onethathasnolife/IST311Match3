@@ -112,7 +112,6 @@ public final class GameHandler extends JComponent {
             gameBoard.calculateDrop();
             gameBoard.setAnimationType(BoardHandler.animationType.CASCADE);
             gameBoard.animateCascade();
-            
             //Game.soundLibrary.playAudio("fall");
         } // if : !stable
     } // updateGame
@@ -120,9 +119,11 @@ public final class GameHandler extends JComponent {
      * Cleans the boards, fills empty pieces, ends cascades
      */
     public void cleanBoard(){
+        System.out.println("GameHandler - Cleaning Up");
         gameBoard.applyDrop();
         gameBoard.fillEmpty();
         gameBoard.endCascade();
+        System.out.println("GameHandler - Finished Cleaning");
     } // cleanBoard
     /**
      * Adds score to the current score
@@ -141,7 +142,7 @@ public final class GameHandler extends JComponent {
         } // else
     } // addScore
     /**
-     * Sets the combo to better understand points to recieve
+     * Sets the combo to better understand points to receive
      * @param combo current combo which is used to set
      */
     public void setCombo(int combo){

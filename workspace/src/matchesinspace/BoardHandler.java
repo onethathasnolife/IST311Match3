@@ -43,6 +43,7 @@ public class BoardHandler implements ActionListener{
      * Constructor sets up information, gets pieces/board array.
      */
     public BoardHandler(GameHandler gamePanel){
+        System.out.println("BoardHandler - Constructor");
         this.gamePanel = gamePanel;
         this.matches = new ArrayList();
         this.fallingPieces = null;
@@ -103,6 +104,7 @@ public class BoardHandler implements ActionListener{
         for(Piece piece[] : pieces){
             for(Piece each : piece){
                 if(each.willDrop && !each.type.equals(Piece.pieceType.DELETED))
+                    System.out.println("BoardHandler - Pieces Collected");
                     collection.add(each);
             } // for : each
         } // for : piece[]
@@ -114,8 +116,10 @@ public class BoardHandler implements ActionListener{
      * @return Returns the array list stating that there are not current matches moving or in progress
      */
     public boolean isStable(){
+        System.out.println("BoardHandler - Checking Stability");
         checkRows();
         checkColumns();
+        System.out.println("BoardHandler - Stability Status: "+matches.isEmpty());
         return matches.isEmpty();
     } // isStable
     /**
@@ -142,7 +146,9 @@ public class BoardHandler implements ActionListener{
             combo += match.size();
             score += match.size()*MULTIPLIER;
             for(Piece piece : match){
+                System.out.println("BoardHandler + markDeleted + Piece Type: "+piece.type);
                 piece.type = Piece.pieceType.DELETED;
+                System.out.println("BoardHandler - markDeleted - Piece Type: "+piece.type);             
             } // for : piece
         } // for : match
         matches.clear();
@@ -154,8 +160,8 @@ public class BoardHandler implements ActionListener{
      * Calculates the drop from a resulting match
      */
     public void calculateDrop(){
-        for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
-            for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >=0; row--){
+        for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
+            for(int row = BoardGenerator.VERTICAL_PIECES-1; row >=0; row--){
                 Piece bottomPiece = this.getPieceAt(row, col);
                 bottomPiece.beforeDrop = row;
                 
@@ -173,8 +179,8 @@ public class BoardHandler implements ActionListener{
      * Applies animations and other information related to dropping, as well as moving pieces.
      */
     public void applyDrop(){
-        for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
-            for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >= 0; row--){
+        for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
+            for(int row = BoardGenerator.VERTICAL_PIECES-1; row >= 0; --row){
                 Piece piece = this.getPieceAt(row, col);
                 
                 if(piece.willDrop && !piece.type.equals(Piece.pieceType.DELETED)){
@@ -194,6 +200,7 @@ public class BoardHandler implements ActionListener{
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
                 Piece piece = this.getPieceAt(row, col);
                 if(piece.type.equals(Piece.pieceType.DELETED)){
+                    System.out.println("DELETED FOUND");
                     Piece random = PieceHandler.generateRandom(row, col);
                     this.setPieceAt(row, col, random);
                 } // if : pieceType == DELETED
@@ -326,8 +333,9 @@ public class BoardHandler implements ActionListener{
      */
     public void endCascadeAnimation(){
         timer.stop();
-        frame = 0;
-        //gamePanel.cleanBoard();
+        frame = 0; 
+        
+        gamePanel.cleanBoard();
         gamePanel.repaint();
         gamePanel.updateGame();
     } // endCascadeAnimation
@@ -366,7 +374,7 @@ public class BoardHandler implements ActionListener{
         else if(animationType.equals(animationType.CASCADE)){
             frame++;
             if(frame > 32){
-                endCascade();
+                endCascadeAnimation();
             } // if : frame
             else{
                 for(Piece piece : fallingPieces){
