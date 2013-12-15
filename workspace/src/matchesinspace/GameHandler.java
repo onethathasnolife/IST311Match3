@@ -122,7 +122,9 @@ public final class GameHandler extends JComponent {
             //Game.soundLibrary.playAudio("fall");
         } // if : !stable
     } // updateGame
-    
+    /**
+     * Cleans the board, Does things related to what happens after a match is created, handling the board cleanup
+     */
     public void cleanBoard(){
         boardHandler.applyDrop();
         boardHandler.fillEmpty();

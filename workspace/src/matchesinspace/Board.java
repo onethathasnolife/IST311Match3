@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Bob
+ * Handles information related to the Board, calls classes needed and acts as an inbetween the UI and Game
  */
 public class Board {
     
