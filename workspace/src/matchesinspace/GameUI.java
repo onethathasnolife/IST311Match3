@@ -46,6 +46,19 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         System.out.println("GameUI - UI Built");
     } // GameUI : Constructor
     
+    /**
+    * Used if game is loaded from text file instead
+    */
+    public GameUI(Boolean loaded){
+        System.out.println("GameUI - Loaded - Building UI");
+        
+        initializeComponents();      
+	this.setVisible(true);
+	addKeyListener(this);
+              
+        System.out.println("GameUI - Loaded - UI Built");
+    } // GameUI : Constructor - loaded
+    
     public void initializeComponents(){
         windowSetup();
         

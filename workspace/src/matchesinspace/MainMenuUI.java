@@ -69,7 +69,9 @@ public class MainMenuUI extends JFrame implements ActionListener{
             this.dispose();
         } // if : newBTN
         if(obj == loadBTN){
-        
+            gameUI = new GameUI(true);
+            this.setVisible(false);
+            this.dispose();
         } // if : loadBTN
         if(obj == settingsBTN){
             options = new OptionMenuUI();
