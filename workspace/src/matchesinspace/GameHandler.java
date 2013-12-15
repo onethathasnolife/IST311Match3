@@ -41,6 +41,7 @@ public final class GameHandler extends JComponent {
     private BoardUI boardUI;
     private Board gameBoard;
     private BoardHandler boardHandler;
+    private boolean started; 
     private Piece focus;
     private int score;
     private int level;
@@ -56,6 +57,7 @@ public final class GameHandler extends JComponent {
      */
     public GameHandler(GameUI gameUI){
         this.gameUI = gameUI;
+        started = false;
         try{
             boardImg = ImageIO.read(new File(DIRECTORY+"board2.png"));
         } // try
@@ -80,7 +82,7 @@ public final class GameHandler extends JComponent {
         while(!boardHandler.isStable()) {
             boardHandler.removeMatches();
         } // while : !stable
-        
+        started = true;
         focus = null;
         score = 0;
         combo = 0;
@@ -202,7 +204,9 @@ public final class GameHandler extends JComponent {
      */
     public void paintComponent(Graphics g){
         this.boardIcon.paintIcon(null, g, 0, 0);
-        drawPieces(g);
+        if(started){
+            drawPieces(g);
+        }
     } // paintComponent
     
     /**
