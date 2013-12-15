@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public final class Board {
     
-    private Piece pieces[][];
+    private static Piece pieces[][];
     BoardGenerator board;
     
     public Board(GameHandler game){
@@ -63,6 +63,10 @@ public final class Board {
         piece.setAnimRow(row);                                                  
         pieces[row][col] = piece;
     } // setPieceAt
+    
+    public static Piece[][] getPieces(){
+        return pieces;
+    } //getPieces
     
     /**
      * Gets the amount of falling pieces from a match

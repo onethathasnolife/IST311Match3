@@ -16,7 +16,7 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 	private JPanel pauseGamePanel;
 	private MainMenuUI mainMenuPanel;
 	private JPanel pauseMenuPanel;
-	private JButton unpauseBTN,returnBTN;
+	private JButton resumeBTN,savequitBTN;
         
 	/**
 	 * Constructor, sets up information related to the UI
@@ -32,15 +32,15 @@ public class PauseMenuUI extends JFrame implements ActionListener {
             setLayout(new GridLayout(2,1));
             setLocationRelativeTo(null);
             
-            unpauseBTN = new JButton("Unpause Game");
-            returnBTN = new JButton("Return to main menu");
+            resumeBTN = new JButton("Resume");
+            savequitBTN = new JButton("Save & Quit");
 	
-            unpauseBTN.addActionListener(this);
-            returnBTN.addActionListener(this);
+            resumeBTN.addActionListener(this);
+            savequitBTN.addActionListener(this);
 	
-            add(unpauseBTN);
-            add(returnBTN);
-		
+            add(resumeBTN);
+            add(savequitBTN);
+            
             setVisible(true);	
 	} // PauseMenuUI : Constructor 
         
@@ -50,15 +50,13 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 	 * @param event the event that can perform an action
 	 */
 	public void actionPerformed(ActionEvent e){
-            if(e.getSource() == unpauseBTN){
+            if(e.getSource() == resumeBTN){
                 setVisible(false);
                 pauseGamePanel.setVisible(true);
             } // if : 
-            if(e.getSource() == returnBTN){
-                setVisible(false);
-		pauseGamePanel.setVisible(false);
-                this.dispose();
-		mainMenuPanel = new MainMenuUI();
+            if(e.getSource() == savequitBTN){
+                SaveGame.Save();
+                System.exit(0);
             } // if :
 	} // actionPerformed
  
