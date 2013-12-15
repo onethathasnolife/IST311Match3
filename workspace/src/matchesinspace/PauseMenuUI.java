@@ -44,7 +44,7 @@ public class PauseMenuUI extends JFrame implements ActionListener {
 	} // PauseMenuUI : Constructor 
         
 	@Override
-        /**
+      /**
 	 * Handles all information related to button presses
 	 * @param event the event that can perform an action
 	 */
