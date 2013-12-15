@@ -15,7 +15,6 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import javax.swing.JComponent;
-import static matchesinspace.ImageLibrary.DIRECTORY;
 
 
 /**
@@ -47,7 +46,6 @@ public final class GameHandler extends JComponent {
     private int level;
     private int combo;
     public static ImageLibrary imageLibrary = new ImageLibrary();
-    public static SoundLibrary soundLibrary = new SoundLibrary();
     public BufferedImage boardImg;
     public ImageIcon boardIcon;
     static final String DIRECTORY   = "src/resources/images/";
@@ -78,7 +76,7 @@ public final class GameHandler extends JComponent {
         gameBoard = new Board(this);
         boardHandler = new BoardHandler(gameBoard, this);
         boardUI = new BoardUI(gameBoard, this, null);
-        
+        gameBoard.initialize();
         while(!boardHandler.isStable()) {
             boardHandler.removeMatches();
         } // while : !stable

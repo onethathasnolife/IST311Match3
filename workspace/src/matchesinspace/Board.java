@@ -11,31 +11,35 @@ import java.util.ArrayList;
  *
  * Handles information related to the Board, calls classes needed and acts as an inbetween the UI and Game
  */
-public class Board {
+public final class Board {
     
     private Piece pieces[][];
+    BoardGenerator board;
     
     public Board(GameHandler game){
-        BoardGenerator board = new BoardGenerator();
+        BoardGenerator board = new BoardGenerator();    
+    }
+    
+    public void initialize(){
         pieces = board.getBoard();
     }
     
     /**
      * Swaps pieces based on what piece is selected and direction of second swap
-     * @param piece1 first piece used in animation, selected piece
-     * @param piece2 second piece used in animation, what is being swapped with
+     * @param p1 first piece used in animation, selected piece
+     * @param p2 second piece used in animation, what is being swapped with
      */
-    public void swapPieces(Piece piece1, Piece piece2){
-        int column1 = piece1.col;
-        int column2 = piece2.col;
-        int row1 = piece1.row;
-        int row2 = piece2.row;
-        piece1.setAnimCol(column2);
-        piece1.setAnimRow(row2);
-        piece2.setAnimCol(column1);
-        piece2.setAnimRow(row1);
-        pieces[row1][column1] = piece2;
-        pieces[row2][column2] = piece1;
+    public void swapPieces(Piece p1, Piece p2){
+        int c1 = p1.col;
+        int c2 = p2.col;
+        int r1 = p1.row;
+        int r2 = p2.row;
+        p1.setAnimCol(c2);
+        p1.setAnimRow(r2);
+        p2.setAnimCol(c1);
+        p2.setAnimRow(r1);
+        pieces[r1][c1] = p2;
+        pieces[r2][c2] = p1;
     } // swapPieces
     
     /**
@@ -70,9 +74,9 @@ public class Board {
                 if(each.willDrop && !each.type.equals(Piece.pieceType.DELETED)){
                     System.out.println("BoardHandler - Pieces Collected");
                     collection.add(each);
-                }
+                } // if : willDrop && type != DELETED
             } // for : each
         } // for : piece[]
     } // collectFallingPieces
     
-}
+} // Board

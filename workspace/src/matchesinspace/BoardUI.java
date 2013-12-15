@@ -30,7 +30,7 @@ public class BoardUI implements ActionListener{
     private ArrayList<Piece> fallingPieces;
     private Board gameBoard;
     private GameHandler gameHandler;
-    private animationType animationType;
+    private animationType type;
     public static enum animationType{SWAP, CASCADE};
     /**
      * Constructor, sets up initial components to creating a boardUI
@@ -41,7 +41,7 @@ public class BoardUI implements ActionListener{
     public BoardUI(Board gameBoard, GameHandler gameHandler, animationType type){
         this.gameBoard = gameBoard;
         this.gameHandler = gameHandler;
-        this.animationType = type;
+        this.type = type;
         p1 = null;
         p2 = null;
         fallingPieces = null;
@@ -52,19 +52,11 @@ public class BoardUI implements ActionListener{
     //***********ANIMATIONS***********
     /**
      * Sets the animation type of the object
-     * @param animationType Sets the current animation type of the object, given animation type
+     * @enum animationType Sets the current animation type of the object, given animation type
      */
     public void setAnimationType(animationType type){
-        this.animationType = type;
+        this.type = type;
     } // setAnimationType
-    
-    /**
-     * Returns the Animation type 
-     * @return returns the current animation type
-     */
-    public animationType getAnimationType(){
-        return animationType;
-    } // getAnimationType
     
     /**
      * Tells the current frame the animation is in
@@ -118,7 +110,7 @@ public class BoardUI implements ActionListener{
      * Handles actions performed  for this class
      */
     public void actionPerformed(ActionEvent evt){
-        if(animationType.equals(animationType.SWAP)){
+        if(type.equals(animationType.SWAP)){
             frame++;
             if(frame > 32){
                 endSwapAnimation();
@@ -148,7 +140,7 @@ public class BoardUI implements ActionListener{
                 gameHandler.repaint();
             } // else
         } // if : animationType == SWAP
-        else if(animationType.equals(animationType.CASCADE)){
+        else if(type.equals(animationType.CASCADE)){
             frame++;
             if(frame > 32){
                 endCascadeAnimation();
@@ -162,4 +154,4 @@ public class BoardUI implements ActionListener{
         } // else if : animationType == CASCADE
     } // actionPerformed
     
-}
+} // BoardUI

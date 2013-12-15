@@ -88,13 +88,14 @@ public class BoardHandler{
      * Calculates the drop from a resulting match
      */
     public void calculateDrop(){
-        for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
-            for(int row = BoardGenerator.VERTICAL_PIECES-1; row >=0; row--){
+        int col, row, temp;
+        for(col = 0; col < 8; col++){
+            for(row = 7; row >=0; row--){
                 Piece bottomPiece = gameBoard.getPieceAt(row, col);
                 bottomPiece.beforeDrop = row;
                 
                 if(bottomPiece.type.equals(Piece.pieceType.DELETED)){
-                    for(int temp = row-1; temp >= 0; temp--){
+                    for(temp = row-1; temp >= 0; temp--){
                         Piece topPiece = gameBoard.getPieceAt(temp, col);
                         topPiece.willDrop = true;
                         topPiece.dropDistance++;
@@ -108,8 +109,9 @@ public class BoardHandler{
      * Applies animations and other information related to dropping, as well as moving pieces.
      */
     public void applyDrop(){
-        for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
-            for(int row = BoardGenerator.VERTICAL_PIECES-1; row >= 0; --row){
+        int col, row;
+        for(col = 0; col < 8; ++col){
+            for(row = 7; row >= 0; --row){
                 Piece piece = gameBoard.getPieceAt(row, col);
                 
                 if(piece.willDrop && !piece.type.equals(Piece.pieceType.DELETED)){
@@ -126,8 +128,9 @@ public class BoardHandler{
      */
     public void fillEmpty(){
         System.out.println("BoardHandler - Filling Empty Spaces");
-        for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
-            for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
+        int row, col;
+        for(row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
+            for(col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
                 Piece piece = gameBoard.getPieceAt(row, col);
                 if(piece.type.equals(Piece.pieceType.DELETED)){
                     System.out.println("DELETED FOUND");
@@ -144,8 +147,9 @@ public class BoardHandler{
      */
     public void endCascade(){
         System.out.println("BoardHandler - Ending Cascade");
-        for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
-            for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
+        int row, col;
+        for(row = 0; row < 8; row++){
+            for(col = 0; col < 8; col++){
                 Piece piece = gameBoard.getPieceAt(row, col);
                 piece.beforeDrop = col;
                 piece.dropDistance = 0;
@@ -160,14 +164,14 @@ public class BoardHandler{
      */
     private void checkRows(){
         System.out.println("BoardHandler - Checking Rows");
-        int temp;
-        for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
-            for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES-2; col++){
+        int row, col, temp;
+        for(row = 0; row < 8; row++){
+            for(col = 0; col < 6; col++){
                 Piece start = gameBoard.getPieceAt(row, col);
                 ArrayList match = new ArrayList(5);
                 match.add(start);
                 
-                for(temp = (col+1); temp < BoardGenerator.HORIZONTAL_PIECES; temp++){
+                for(temp = (col+1); temp < 8; temp++){
                     Piece next = gameBoard.getPieceAt(row, temp);
                     if(next.type.equals(start.type)){
                         match.add(next);
@@ -190,14 +194,14 @@ public class BoardHandler{
      */
     private void checkColumns(){
         System.out.println("BoardHandler - Checking Columns");
-        int temp;
-        for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
-            for(int row = 0; row < BoardGenerator.VERTICAL_PIECES-2; row++){
+        int col, row, temp;
+        for(col = 0; col < 8; col++){
+            for(row = 0; row < 6; row++){
                 Piece start = gameBoard.getPieceAt(row, col);
                 ArrayList match = new ArrayList(3);
                 match.add(start);
                 
-                for(temp = (row+1); temp < BoardGenerator.VERTICAL_PIECES; temp++){
+                for(temp = (row+1); temp < 8; temp++){
                     Piece next = gameBoard.getPieceAt(temp, col);
                     if(next.type.equals(start.type)){
                         match.add(next);
