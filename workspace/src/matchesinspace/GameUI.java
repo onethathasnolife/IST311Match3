@@ -60,7 +60,9 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         
         System.out.println("GameUI - Loaded - UI Built");
     } // GameUI : Constructor - loaded
-    
+    /**
+     * Analyzes the main information for the game
+     */
     public void initializeComponents(){
         windowSetup();
         
@@ -101,17 +103,23 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         
         this.add(gamePanel);
     } // initializeComponents
-    
+    /**
+     * Sets up the game window size and other small information
+     */  
     private void initializeGame(){
         game.initializeGame();
     } // initializeGame
-    
+    /**
+     * Sets up the game window size and other small information
+     */  
     private void initializeGame(Boolean loaded){
         if(loaded){
             game.initializeGame(loaded);
         } // if : loaded
     } // initializeGame - loaded
-    
+    /**
+     * Sets up information based on the window of the GameUI
+     */
     private void windowSetup(){
         //Toolkit kit = Toolkit.getDefaultToolkit();
         //Dimension screenSize = kit.getScreenSize();
@@ -135,35 +143,58 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
                 }
             });
     } // windowSetup
-    
+    /**
+     * Sets the score
+     * @param score Current score given.
+     */
     public void setScore(int score){
         this.score.setText(Integer.toString(score));
     } // setScore
-    
+    /**
+     * Sets the level
+     * @param level Current level given.
+     */
     public void setLevel(int level){
         this.level.setText(Integer.toString(level));
     } // setLevel
-    
+    /**
+     * Sets the combo
+     * @param combo Current combo given.
+     */
     public void setCombo(int combo){
         this.combo.setText(Integer.toString(combo));
     } // setCombo
-    
+    /**
+     * Sets the current row
+     * @param row Current row given
+     */
     public void setRow(int row){
         this.row.setText(Integer.toString(row));
     } // setRow
-    
+    /**
+     * Sets the current Column
+     * @param col Current column given
+     */
     public void setColumn(int col){
         this.col.setText(Integer.toString(col));
     } // setColumn
-    
+    /**
+     * Gets the current score
+     * @return Returns the score currently
+     */
     public static int getScore(){
         return Integer.parseInt(score.getText());
     } // getScore
-    
+    /**
+     * Gets the current level
+     * @return Returns the current level
+     */
     public static int getLevel(){
         return Integer.parseInt(level.getText());
     } // getLevel
-    
+    /**
+     * Handles actions performed for this class
+     */
     public void actionPerformed(ActionEvent evt){
 	Object obj = evt.getSource();
         /*
@@ -173,6 +204,9 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         }*/
     } // actionPerformed
     
+    /**
+     * Handles key presses
+     */
     public void keyPressed(KeyEvent e){
         if(e.getKeyChar()=='p'){
             System.out.println("Paused");
