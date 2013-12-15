@@ -87,10 +87,13 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     private void windowSetup(){
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
-        double screenHeight = screenSize.height*.75;
-        double screenWidth  = screenSize.width*.75;
+        //double screenHeight = screenSize.height*.75;
+        //double screenWidth  = screenSize.width*.75;
+        int screenHeight = 625;
+        int screenWidth = 940;
         setSize((int)screenWidth,(int)screenHeight);
         setLocationRelativeTo(null);
+        setResizable(false);
         setTitle("MATCHES..........IN SPACE!!!!");
         setLayout(new BorderLayout());
         setDefaultCloseOperation (EXIT_ON_CLOSE);   
