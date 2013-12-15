@@ -58,7 +58,11 @@ public class Piece {
             this.pieceIcon.setImage(GameHandler.imageLibrary.getImage(type));
         } // if : !DELETED
     } // Piece : Constructor
-        
+    /**
+     * Shows if the piece is currently next to a piece of the same type    
+     * @param piece the current piece being selected
+     * @return true if next to a certain piece, false if it isnt
+     */
     public boolean isNextTo(Piece piece){
         if(Math.abs(row-piece.row) == 1 && Math.abs(col-piece.col) == 0){
             return true;
@@ -70,7 +74,10 @@ public class Piece {
             return false;
         } // else   
     } // isNextTo
-    
+    /**
+     * Draws the grahpic for the piece
+     * @param g Given grahpics field/board.
+     */
     public void draw(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
         if(!type.equals(Piece.pieceType.DELETED)){
@@ -82,20 +89,34 @@ public class Piece {
             focusIcon.paintIcon(null, g, anim_col, anim_row);
         } // if : inFocus 
     } // draw
-    
+    /**
+     * Moves a piece by row
+     * @param step Amount of steps the piece is moved
+     * @param direction Direction of movement, usually one or negative one
+     */
     public void moveRow(int step, int direction){
         anim_row += step*direction;
     } // moveRow
-    
+    /**
+     * Moves a piece by column
+     * @param step Amount of steps the piece is moved
+     * @param direction Direction of movement, usually positive one or negative one
+     */
     public void moveCol(int step, int direction){
         anim_col += step*direction;
     } // moveCol
-    
+    /**
+     * Sets animation of a row of a piece
+     * @param row Given row of a piece
+     */
     public void setAnimRow(int row){
         this.col = col;
         this.anim_col = col*65+240;
     } // setRowAnimation
-    
+    /**
+     * Sets animation of a column of a piece
+     * @param col Given column of a piece
+     */
     public void setAnimCol(int col){
         this.col = col;
         this.anim_col = col*65+240;

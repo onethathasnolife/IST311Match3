@@ -35,7 +35,9 @@ public class MainMenuUI extends JFrame implements ActionListener{
         
         System.out.println("MainMenuUI - Running");
     } // MainMenuUI : Constructor
-    
+    /**
+     * Initalizes the individual components of the Main Menu
+     */
     public void initializeComponents(){
         setTitle("MATCHES..........IN SPACE!!!!");
         setLocationRelativeTo(null);
@@ -54,7 +56,10 @@ public class MainMenuUI extends JFrame implements ActionListener{
         
         this.add(mainMenuPanel);
     } // initializeComponents
-     
+    /**
+     * Handles information to button presses on this UI
+     * @param event set of event that can have an action
+     */
     public void actionPerformed(ActionEvent evt){
         Object obj = evt.getSource();
     

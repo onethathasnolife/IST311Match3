@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
-/*
+/**
  * Main class, Runs game, Setup at main menu
  */
 public class runGame {	
