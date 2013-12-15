@@ -81,13 +81,13 @@ public class Piece {
     public void draw(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
         if(!type.equals(Piece.pieceType.DELETED)){
-            pieceIcon.paintIcon(null, g, anim_col, anim_row);
+            pieceIcon.paintIcon(null, g2, anim_col, anim_row);
         } // if : DELETED
         if(inFocus){
             ImageIcon focusIcon = new ImageIcon();
             focusIcon.setImage(GameHandler.imageLibrary.getImage(Piece.pieceType.FOCUSED));
-            focusIcon.paintIcon(null, g, anim_col, anim_row);
-        } // if : inFocus 
+            focusIcon.paintIcon(null, g2, anim_col, anim_row);
+        } // if : inFocus
     } // draw
     /**
      * Moves a piece by row

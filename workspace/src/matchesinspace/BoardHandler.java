@@ -117,16 +117,19 @@ public class BoardHandler implements ActionListener{
      * Removes a match when called, handles information regarding it.
      */
     public void removeMatches(){
+        System.out.println("BoardHandler - Removing Matches");
         markDeleted();
         calculateDrop();
         applyDrop();
         fillEmpty();
         endCascade();
+        System.out.println("BoardHandler - Matches Removed");
     } // removeMatches
     /**
      * Matches a match as deleted, adds to a combo and adds to the score
      */
     public void markDeleted(){
+        System.out.println("BoardHandler - Marking Deleted");
         int combo = 0;
         int score = 0;
         
@@ -140,6 +143,7 @@ public class BoardHandler implements ActionListener{
         matches.clear();
         gamePanel.addScore(score);
         gamePanel.setCombo(combo);
+        System.out.println("BoardHandler - Marked");
     } // markDeleted
     /**
      * Calculates the drop from a resulting match
@@ -180,6 +184,7 @@ public class BoardHandler implements ActionListener{
      * Generates new pieces for pieces that are missing
      */
     public void fillEmpty(){
+        System.out.println("BoardHandler - Filling Empty Spaces");
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
                 Piece piece = this.getPieceAt(row, col);
@@ -189,11 +194,13 @@ public class BoardHandler implements ActionListener{
                 } // if : pieceType == DELETED
             } // for : col
         } // for : row
+        System.out.println("BoardHandler - Empty Spaces Filled");
     } // fillEmpty
     /**
      * Ends the cascade of multiple piece matches happening at the same time or in a combo
      */
     public void endCascade(){
+        System.out.println("BoardHandler - Ending Cascade");
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
                 Piece piece = this.getPieceAt(row, col);
@@ -202,11 +209,13 @@ public class BoardHandler implements ActionListener{
                 piece.willDrop = false;
             } // for : col
         } // for : row
+        System.out.println("BoardHandler - Cascade Ended");
     } // endCascade
     /**
      * Checks rows if there is matches.
      */
     private void checkRows(){
+        System.out.println("BoardHandler - Checking Rows");
         int temp;
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES-2; col++){
@@ -229,11 +238,13 @@ public class BoardHandler implements ActionListener{
                 col = temp - 1;
             } // for : col
         } // for : row
+        System.out.println("BoardHandler - Rows Checked");
     } // checkRows
     /**
      * Checks columns if there is any matches
      */
     private void checkColumns(){
+        System.out.println("BoardHandler - Checking Columns");
         int temp;
         for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
             for(int row = 0; row < BoardGenerator.VERTICAL_PIECES-2; row++){
@@ -256,6 +267,7 @@ public class BoardHandler implements ActionListener{
                 row = temp - 1;
             } // for : row
         } // for : col
+        System.out.println("BoardHandler - Columns Checked");
     } // checkColumns
     
     //***********ANIMATIONS***********
