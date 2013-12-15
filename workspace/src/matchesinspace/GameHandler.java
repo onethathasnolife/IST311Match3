@@ -150,12 +150,8 @@ public final class GameHandler extends JComponent {
     } // clickPerformed
     
     public void paintComponent(Graphics g){
-        System.out.println("GameHandler - Painting Board");
-        this.boardIcon.paintIcon(null, g, 0, 0);
-        System.out.println("GameHandler - Board Painted");
-        System.out.println("GameHandler - Painting Pieces");
+        this.boardIcon.paintIcon(null, g, 0, 0);;
         drawPieces(g);
-        System.out.println("GameHandler - Painting Completed");
     } // paintComponent
     
     private void drawPieces(Graphics g){
