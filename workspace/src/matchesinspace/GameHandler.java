@@ -60,19 +60,19 @@ public final class GameHandler extends JComponent {
     public void initializeGame(){     
         gameBoard = new BoardHandler(this);
         
+        while(!gameBoard.isStable()) {
+            gameBoard.removeMatches();
+        } // while : !stable
+        
         focus = null;
         score = 0;
         combo = 0;
-        level = 1;
+        level = 1; 
         gamePanel.setScore(score);
         gamePanel.setCombo(combo);
         gamePanel.setLevel(level);
         gamePanel.setRow(-1);
         gamePanel.setColumn(-1);
-        
-        while(!gameBoard.isStable()) {
-            gameBoard.removeMatches();
-        } // while : !stable
         
         repaint();      
         //Game.soundLibrary.playAudio("fall");
@@ -137,7 +137,7 @@ public final class GameHandler extends JComponent {
             else{
                 if(focus.isNextTo(clicked)){
                     focus.inFocus = false;
-                    gameBoard.swapPieces(focus, clicked);
+                    this.swapPieces(focus, clicked);
                     focus = null;
                 } // if : isNextTo
                 else{
@@ -148,6 +148,11 @@ public final class GameHandler extends JComponent {
             } // else
         } // else
     } // clickPerformed
+    
+    private void swapPieces(Piece p1, Piece p2){
+        gameBoard.setAnimationType(BoardHandler.animationType.SWAP);
+        gameBoard.animateSwap(p1, p2);
+    } // swapPieces
     
     public void paintComponent(Graphics g){
         this.boardIcon.paintIcon(null, g, 0, 0);;

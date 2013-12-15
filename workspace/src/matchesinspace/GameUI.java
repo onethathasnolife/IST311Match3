@@ -127,7 +127,10 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         if(e.getKeyChar()=='p'){
             System.out.println("Paused");
             pause = new PauseMenuUI(gamePanel);
-	} // if : key == 'p'	
+	} // if : key == 'p'
+        if(e.getKeyChar()=='q'){
+            System.exit(0);
+	} // if : key == 'p'
     } // keyPressed
     
     public void keyReleased(KeyEvent e){

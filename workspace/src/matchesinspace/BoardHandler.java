@@ -46,7 +46,7 @@ public class BoardHandler implements ActionListener{
         this.gamePanel = gamePanel;
         this.matches = new ArrayList();
         this.fallingPieces = null;
-        timer = new Timer(10, this);
+        timer = new Timer(30, this);
         BoardGenerator board = new BoardGenerator();
         pieces = board.getBoard();    
     } // BoardHandler : Constructor
