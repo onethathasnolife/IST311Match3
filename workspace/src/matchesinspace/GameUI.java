@@ -35,13 +35,13 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     * Sets up basic information on the game board
     */
     public GameUI(){
-        System.out.println("GameUI - Building");
+        System.out.println("GameUI - Building UI");
         
         initializeComponents();      
 	this.setVisible(true);
 	addKeyListener(this);
               
-        System.out.println("GameUI - Running");
+        System.out.println("GameUI - UI Built");
     } // GameUI : Constructor
     
     public void initializeComponents(){
@@ -75,15 +75,20 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         statsPanel.add(textCol);
         statsPanel.add(col);
         gamePanel.add(statsPanel, BorderLayout.WEST);
+        
+        System.out.println("GameUI - Building Game");
+        GameHandler game = new GameHandler(this);
+        System.out.println("GameUI - Game Running");
+        
         this.add(gamePanel);
     } // initializeComponents
     
     private void windowSetup(){
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
-        int screenHeight = screenSize.height/2;
-        int screenWidth  = screenSize.width/2;
-        setSize(screenWidth,screenHeight);
+        double screenHeight = screenSize.height*.75;
+        double screenWidth  = screenSize.width*.75;
+        setSize((int)screenWidth,(int)screenHeight);
         setLocationRelativeTo(null);
         setTitle("MATCHES..........IN SPACE!!!!");
         setLayout(new BorderLayout());

@@ -28,7 +28,7 @@ public class PauseMenuUI extends JFrame implements ActionListener {
             setTitle("MATCHES..........IN SPACE!!!!");
             setSize(400,300);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
+            setLocationRelativeTo(null);
             setLayout(new GridLayout(2,1));
 	
             mybutton1 = new JButton("Unpause Game");
