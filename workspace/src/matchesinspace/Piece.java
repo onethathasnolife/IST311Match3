@@ -79,7 +79,7 @@ public class Piece {
             ImageIcon focusIcon = new ImageIcon();
             focusIcon.setImage(GameHandler.imageLibrary.getImage(Piece.pieceType.FOCUSED));
             focusIcon.paintIcon(null, g, anim_col, anim_row);
-        } // if : inFocus
+        } // if : inFocus 
     } // draw
     
     public void moveRow(int step, int direction){

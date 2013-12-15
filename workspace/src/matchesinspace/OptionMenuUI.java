@@ -24,6 +24,7 @@ public class OptionMenuUI extends JFrame implements ActionListener {
 		setTitle("Matches................IN SPACE!!!!");
 		setSize(400,300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		
 		setLayout(new GridLayout(4,1));
 		

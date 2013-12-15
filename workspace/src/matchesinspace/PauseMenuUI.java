@@ -30,7 +30,8 @@ public class PauseMenuUI extends JFrame implements ActionListener {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setLocationRelativeTo(null);
             setLayout(new GridLayout(2,1));
-	
+            setLocationRelativeTo(null);
+            
             mybutton1 = new JButton("Unpause Game");
             mybutton2 = new JButton("Return to main menu");
 	
