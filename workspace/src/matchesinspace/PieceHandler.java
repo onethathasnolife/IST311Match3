@@ -49,4 +49,32 @@ public class PieceHandler {
         return piece;
     } // generateRandom
     
+    public static Piece generatePiece(int row, int col, String type){
+        Piece piece = null;
+        
+        if(type.equals(Piece.pieceType.BLUE_PLANET)){
+            piece = new Piece(Piece.pieceType.BLUE_PLANET, row, col);
+        } // if : blue
+        if(type.equals(Piece.pieceType.GREEN_PLANET)){
+            piece = new Piece(Piece.pieceType.GREEN_PLANET, row, col);
+        } // if : green
+        if(type.equals(Piece.pieceType.GREY_PLANET)){
+            piece = new Piece(Piece.pieceType.GREY_PLANET, row, col);
+        } // if : grey
+        if(type.equals(Piece.pieceType.ORANGE_PLANET)){
+            piece = new Piece(Piece.pieceType.ORANGE_PLANET, row, col);
+        } // if : orange
+        if(type.equals(Piece.pieceType.PURPLE_PLANET)){
+            piece = new Piece(Piece.pieceType.PURPLE_PLANET, row, col);
+        } // if : purple
+        if(type.equals(Piece.pieceType.RED_PLANET)){
+            piece = new Piece(Piece.pieceType.RED_PLANET, row, col);
+        } // if : red
+        if(type.equals(Piece.pieceType.YELLOW_PLANET)){
+            piece = new Piece(Piece.pieceType.YELLOW_PLANET, row, col);
+        } // if : yellow
+        
+        return piece;
+    } // generatePiece
+    
 } // PieceHandler
