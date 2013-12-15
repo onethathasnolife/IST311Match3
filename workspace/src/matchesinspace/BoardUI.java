@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package matchesinspace;
 
-/**
- *
- * @author Bob
- */
-public class BoardUI {
+import javax.swing.JFrame;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
+public class BoardUI extends JFrame{
     
 }

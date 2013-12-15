@@ -1,14 +1,17 @@
+
 package matchesinspace;
 
 import java.util.ArrayList;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 /**
  * 
  * Handles most information relating to the board, directly relating it to the UI
  *
  */
+
 public class BoardHandler implements ActionListener{
     /**
      * @field pieces[][] 'Board' of pieces, 2 dimensional array of all pieces.
@@ -33,15 +36,17 @@ public class BoardHandler implements ActionListener{
     private int frame;
     private Timer timer;
     public static enum animationType{SWAP, CASCADE};
-    private animationType type;
-    private GameUI gamePanel;
+    private animationType animationType;
+    private GameHandler gamePanel;
+    
     /**
      * Constructor sets up information, gets pieces/board array.
      */
     public BoardHandler(){
         BoardGenerator board = new BoardGenerator();
         pieces = board.getBoard();
-    }
+    } // BoardHandler : Constructor
+    
     /**
      * Swaps pieces based on what piece is selected and direction of second swap
      * @param piece1 first piece used in animation, selected piece
@@ -58,7 +63,8 @@ public class BoardHandler implements ActionListener{
         piece2.setAnimRow(row1);
         pieces[row1][column1] = piece2;
         pieces[row2][column2] = piece1;
-    }
+    } // swapPieces
+    
     /**
      * Gets the piece at a certain row and col
      * @param row row of piece selected
@@ -67,7 +73,8 @@ public class BoardHandler implements ActionListener{
      */
     public Piece getPieceAt(int row, int col){
         return pieces[row][col];
-    }
+    } // getPieceAt
+    
     /**
      * Sets a piece at a certain row and column, with a certain piece
      * @param row Row of piece selected
@@ -78,7 +85,8 @@ public class BoardHandler implements ActionListener{
         piece.setAnimCol(col);                                                  
         piece.setAnimRow(row);                                                  
         pieces[row][col] = piece;
-    }
+    } // setPieceAt
+    
     /**
      * Gets the amount of falling pieces from a match
      * @param collection array of all pieces that are falling
@@ -88,33 +96,26 @@ public class BoardHandler implements ActionListener{
             for(Piece each : piece){
                 if(each.willDrop && !each.type.equals(Piece.pieceType.DELETED))
                     collection.add(each);
-            }
-        }
-    }
+            } // for : each
+        } // for : piece[]
+    } // collectFallingPieces
     
     //***********ALGORITHMS***********
-    /**
-     * Checks if there is any current matches, if none found, returns no matches found.
-     * @return Returns the array list stating that there are not current matches moving or in progress
-     */
+    
     public boolean isStable(){
         checkRows();
         checkColumns();
         return matches.isEmpty();
-    }
-    /**
-     * Removes a match when called, handles information regarding it.
-     */
+    } // isStable
+    
     public void removeMatches(){
         markDeleted();
         calculateDrop();
         applyDrop();
         fillEmpty();
         endCascade();
-    }
-    /**
-     * Matches a match as deleted, adds to a combo and adds to the score
-     */
+    } // removeMatches
+    
     public void markDeleted(){
         int combo = 0;
         int score = 0;
@@ -124,15 +125,13 @@ public class BoardHandler implements ActionListener{
             score += match.size()*MULTIPLIER;
             for(Piece piece : match){
                 piece.type = Piece.pieceType.DELETED;
-            }
-        }
+            } // for : piece
+        } // for : match
         matches.clear();
-        addScore(score);
-        setCombo(combo);
-    }
-    /**
-     * Calculates the drop from a resulting match
-     */
+        gamePanel.addScore(score);
+        gamePanel.setCombo(combo);
+    } // markDeleted
+    
     public void calculateDrop(){
         for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
             for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >=0; row--){
@@ -144,14 +143,12 @@ public class BoardHandler implements ActionListener{
                         Piece topPiece = this.getPieceAt(temp, col);
                         topPiece.willDrop = true;
                         topPiece.dropDistance++;
-                    }
-                }
-            }
-        }
-    }
-    /**
-     * Applies animations and other information related to dropping, as well as moving pieces.
-     */
+                    } // for : row
+                } // if : pieceType == DELETED
+            } // for : row
+        } // for : col
+    } // calculateDrop
+    
     public void applyDrop(){
         for(int col = 0; col < BoardGenerator.VERTICAL_PIECES; col++){
             for(int row = BoardGenerator.HORIZONTAL_PIECES-1; row >= 0; row--){
@@ -161,13 +158,11 @@ public class BoardHandler implements ActionListener{
                     this.setPieceAt(row+piece.dropDistance, col, piece);
                     piece.setAnimCol(col);
                     this.setPieceAt(row, col, new Piece(Piece.pieceType.DELETED, row, col));
-                }
-            }
-        }
-    }
-    /**
-     * Generates new pieces for pieces that are missing
-     */
+                } // if : willDrop && !DELETED
+            } // for : row
+        } // for : col
+    } // applyDrop
+    
     public void fillEmpty(){
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -175,13 +170,11 @@ public class BoardHandler implements ActionListener{
                 if(piece.type.equals(Piece.pieceType.DELETED)){
                     Piece random = PieceHandler.generateRandom(row, col);
                     this.setPieceAt(row, col, random);
-                }
-            }
-        }
-    }
-    /**
-     * Ends the cascade of multiple piece matches happening at the same time or in a combo
-     */
+                } // if : pieceType == DELETED
+            } // for : col
+        } // for : row
+    } // fillEmpty
+    
     public void endCascade(){
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
             for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -189,12 +182,10 @@ public class BoardHandler implements ActionListener{
                 piece.beforeDrop = col;
                 piece.dropDistance = 0;
                 piece.willDrop = false;
-            }
-        }
-    }
-    /**
-     * Checks rows if there is matches.
-     */
+            } // for : col
+        } // for : row
+    } // endCascade
+    
     private void checkRows(){
         int temp;
         for(int row = 0; row < BoardGenerator.VERTICAL_PIECES; row++){
@@ -207,22 +198,19 @@ public class BoardHandler implements ActionListener{
                     Piece next = this.getPieceAt(row, temp);
                     if(next.type.equals(start.type)){
                         match.add(next);
-                    }
+                    } // if : match
                     else{
                         break;
-                    }
-                    
-                }
+                    } // else                   
+                } // for : temp
                 if(match.size() > 2){
                     this.matches.add(match);
-                }
+                } // if : match.size
                 col = temp - 1;
-            }
-        }
-    }
-    /**
-     * Checks columns if there is any matches
-     */
+            } // for : col
+        } // for : row
+    } // checkRows
+    
     private void checkColumns(){
         int temp;
         for(int col = 0; col < BoardGenerator.HORIZONTAL_PIECES; col++){
@@ -235,19 +223,103 @@ public class BoardHandler implements ActionListener{
                     Piece next = this.getPieceAt(temp, col);
                     if(next.type.equals(start.type)){
                         match.add(next);
-                    }
+                    } // if : match
                     else{
                         break;
-                    }
-                }
+                    } // else
+                } // for : temp
                 if(match.size() > 2){
                     this.matches.add(match);
-                }
+                } // if : match.size
                 row = temp - 1;
-            }
-        }
-    }
+            } // for : row
+        } // for : col
+    } // checkColumns
     
     //***********ANIMATIONS***********
     
-}
+    public void setAnimationType(animationType animationType){
+        this.animationType = animationType;
+    } // setAnimationType
+    
+    public animationType getAnimationType(){
+        return animationType;
+    } // getAnimationType
+    
+    public int getCurrentFrame(){
+        return frame;
+    } // getCurrentFrame
+    
+    public void animateSwap(Piece p1, Piece p2){
+        this.p1 = p1;
+        this.p2 = p2;
+        timer.start();
+    } // animateSwap
+    
+    public void endSwapAnimation(){
+        timer.stop();
+        frame = 0;
+        this.swapPieces(p1, p2);
+        gamePanel.repaint();
+        gamePanel.updateGame();
+    } // endSwapAnimation
+    
+    public void animateCascade(){
+        fallingPieces = new ArrayList();
+        this.collectFallingPieces(fallingPieces);
+        timer.start();
+    } // animateCascade
+    
+    public void endCascadeAnimation(){
+        timer.stop();
+        frame = 0;
+        gamePanel.cleanBoard();
+        gamePanel.repaint();
+        gamePanel.updateGame();
+    } // endCascadeAnimation
+    
+    public void actionPerformed(ActionEvent evt){
+        if(animationType.equals(animationType.SWAP)){
+            frame++;
+            if(frame > 32){
+                endSwapAnimation();
+            } // if : frame
+            else{
+                int direction = 1;
+                if(p1.col == p2.col){
+                    if(p1.row < p2.row){
+                        direction = 1;
+                    } // if : row
+                    else{
+                        direction = -1;
+                    } // else
+                    p1.moveRow(2, direction);
+                    p2.moveRow(2, -direction);
+                } // if : col
+                else{
+                    if(p1.col < p2.col){
+                        direction = 1;
+                    } // if : col
+                    else{
+                        direction = -1;
+                    } // else
+                    p1.moveCol(2, direction);
+                    p2.moveCol(2, -direction);
+                } // else
+                gamePanel.repaint();
+            } // else
+        } // if : animationType == SWAP
+        else if(animationType.equals(animationType.CASCADE)){
+            frame++;
+            if(frame > 32){
+                endCascade();
+            } // if : frame
+            else{
+                for(Piece piece : fallingPieces){
+                    piece.moveRow(piece.dropDistance*2, 1);
+                } // for : piece
+                gamePanel.repaint();
+            } // else
+        } // else if : animationType == CASCADE
+    } // actionPerformed   
+} // BoardHandler

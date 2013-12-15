@@ -1,15 +1,17 @@
-package matchesinspace;
-import javax.swing.*;
 
+package matchesinspace;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.JFrame;
+
 /**
  * 
  * Handles all information related to the Options Menu UI
  *
  */
+
 public class OptionMenuUI extends JFrame implements ActionListener {
 
 	private MainMenuUI mainui;
@@ -44,7 +46,7 @@ public class OptionMenuUI extends JFrame implements ActionListener {
 	}
 	
 	@Override
-	/**
+        /**
 	 * Handles all information related to button presses
 	 * @param event the event that can perform an action
 	 */

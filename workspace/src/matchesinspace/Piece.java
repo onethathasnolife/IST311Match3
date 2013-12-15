@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package matchesinspace;
 
 import javax.swing.ImageIcon;
@@ -10,7 +6,6 @@ import java.awt.*;
 
 /**
  * Handles and controls all information related to an individual piece
- * 
  */
 public class Piece {
     /**
@@ -31,8 +26,6 @@ public class Piece {
     protected static enum pieceType { BLUE_PLANET, GREEN_PLANET, GREY_PLANET, ORANGE_PLANET, PURPLE_PLANET, RED_PLANET, YELLOW_PLANET, FOCUSED, DELETED }
     protected pieceType type;
     protected ImageIcon pieceIcon;
-    
-    // animate
     protected int row;
     protected int col;
     protected int anim_row;
@@ -41,6 +34,7 @@ public class Piece {
     protected boolean willDrop;
     protected int beforeDrop;
     protected int dropDistance;
+    
     /**
      * Sets information about the piece
      * @param type Type of the piece, relates to icon
@@ -51,8 +45,6 @@ public class Piece {
         this.type = type;
         this.row = row;
         this.col = col;
-        
-        // don't know what these do yet
         this.anim_row = row*65+40;
         this.anim_col = col*65+240;
         this.beforeDrop = 0;
@@ -62,70 +54,50 @@ public class Piece {
     
         if(this.type != pieceType.DELETED){
             this.pieceIcon = new ImageIcon();
-            this.pieceIcon.setImage(BoardHandler.imageLibrary.getImage(type));
-        }
-    }
-    /**
-     * Shows if the piece is currently next to a piece of the same type    
-     * @param piece the current piece being selected
-     * @return true if next to a certain piece, false if it isnt
-     */
+            this.pieceIcon.setImage(GameHandler.imageLibrary.getImage(type));
+        } // if : !DELETED
+    } // Piece : Constructor
+        
     public boolean isNextTo(Piece piece){
         if(Math.abs(row-piece.row) == 1 && Math.abs(col-piece.col) == 0){
             return true;
-        }
+        } // if : row
         else if(Math.abs(row - piece.row) == 0 && Math.abs(col - piece.col) == 1){
             return true;
-        }
+        } // if : col
         else{
             return false;
-        }               
-    }
-    /**
-     * Draws the grahpic for the piece
-     * @param g Given grahpics field/board.
-     */
+        } // else   
+    } // isNextTo
+    
     public void draw(Graphics g){
         Graphics2D g2 = (Graphics2D)g;
-        if(!type.equals(Piece.pieceType.DELETED))
+        if(!type.equals(Piece.pieceType.DELETED)){
             pieceIcon.paintIcon(null, g, anim_col, anim_row);
+        } // if : DELETED
         if(inFocus){
             ImageIcon focusIcon = new ImageIcon();
-            focusIcon.setImage(BoardHandler.imageLibrary.getImage(Piece.pieceType.FOCUSED));
+            focusIcon.setImage(GameHandler.imageLibrary.getImage(Piece.pieceType.FOCUSED));
             focusIcon.paintIcon(null, g, anim_col, anim_row);
-        }
-    }
-    /**
-     * Moves a piece by row
-     * @param step Amount of steps the piece is moved
-     * @param direction Direction of movement, usually one or negative one
-     */
+        } // if : inFocus
+    } // draw
+    
     public void moveRow(int step, int direction){
         anim_row += step*direction;
-    }
-    /**
-     * Moves a piece by column
-     * @param step Amount of steps the piece is moved
-     * @param direction Direction of movement, usually positive one or negative one
-     */
+    } // moveRow
+    
     public void moveCol(int step, int direction){
         anim_col += step*direction;
-    }
-    /**
-     * Sets animation of a row of a piece
-     * @param row Given row of a piece
-     */
+    } // moveCol
+    
     public void setAnimRow(int row){
         this.col = col;
         this.anim_col = col*65+240;
-    }
-    /**
-     * Sets animation of a column of a piece
-     * @param col Given column of a piece
-     */
+    } // setRowAnimation
+    
     public void setAnimCol(int col){
         this.col = col;
         this.anim_col = col*65+240;
-    }
+    } // setColumnAnimation
         
-}
+} // Piece

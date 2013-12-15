@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package matchesinspace;
 
 import javax.imageio.*;
@@ -13,7 +9,6 @@ import java.awt.image.BufferedImage;
 
 /**
  * Loads information related to images found in the game
- *
  */
 public class ImageLibrary {
     /**
@@ -29,48 +24,48 @@ public class ImageLibrary {
         
         try{
             img = ImageIO.read(new File(DIRECTORY + "bluePlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "greenPlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "greyPlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "orangePlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "purplePlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "redPlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         try{
             img = ImageIO.read(new File(DIRECTORY + "yellowPlanet.png"));
-        }
+        } // try
         catch(IOException e){
             System.out.println(e.getMessage());
-        }
+        } // catch
         
-    }
+    } // ImageLibrary
     
     BufferedImage getImage(Piece.pieceType type){
         return imageCollection.get(type);

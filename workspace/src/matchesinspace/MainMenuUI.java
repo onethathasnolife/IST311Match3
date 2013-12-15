@@ -1,68 +1,84 @@
+
 package matchesinspace;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
+
 /**
  * 
  * Contains all information related to the main menu UI
  *
  */
 public class MainMenuUI extends JFrame implements ActionListener{
-	private OptionMenuUI options;
-	private BoardUI mainui;
-	private JPanel mypanel,mypanel2;
-	private JButton mybutton1,mybutton2,mybutton3;
-	private JLabel mylabel;
-/**
- * Constructor, sets up main information of the UI
- */
-public MainMenuUI(){
+     
+    private OptionMenuUI options;
+    private GameUI gameUI;
+    private JPanel mainMenuPanel;
+    private JButton newBTN;
+    private JButton loadBTN;
+    private JButton settingsBTN;
+    private JLabel mylabel;
+    
+    /**
+    * Constructor, sets up main information of the UI
+    */
+    public MainMenuUI(){
+	System.out.println("MainMenuUI - Building");
+        
+        this.initializeComponents();
+	this.setVisible(true);
+        
+        System.out.println("MainMenuUI - Running");
+    } // MainMenuUI : Constructor
+    
+    public void initializeComponents(){
+        windowSetup();
+        
+        newBTN      = new JButton("New Game");
+	loadBTN     = new JButton("Load Game");
+	settingsBTN = new JButton("Settings");
 	
-	mypanel = new JPanel();
-	
-	setTitle("MATCHES..........IN SPACE!!!!");
-	setSize(400,300);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-	setLayout(new GridLayout(3,1));
-	
-	mybutton1 = new JButton("New Game");
-	mybutton2 = new JButton("Load Game");
-	mybutton3 = new JButton("Settings");
-	
-	mybutton1.addActionListener(this);
-	mybutton2.addActionListener(this);
-	mybutton3.addActionListener(this);
-	
-	add(mybutton1);
-	add(mybutton2);
-	add(mybutton3);
-	setVisible(true);
-}
+        mainMenuPanel = new JPanel(new BorderLayout());
+        mainMenuPanel.setSize(300, 300);
+        mainMenuPanel.add(newBTN, BorderLayout.NORTH);
+	mainMenuPanel.add(loadBTN, BorderLayout.CENTER);
+	mainMenuPanel.add(settingsBTN, BorderLayout.SOUTH);
+        
+	newBTN.addActionListener(this);
+	loadBTN.addActionListener(this);
+	settingsBTN.addActionListener(this);
+        
+        this.add(mainMenuPanel);
+    } // initializeComponents
+    
+    private void windowSetup(){
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth  = screenSize.width;
+        setSize(screenWidth,screenHeight);
+        setLocationByPlatform(true);
+        setTitle("MATCHES..........IN SPACE!!!!");
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation (EXIT_ON_CLOSE);   
+    } // windowSetup
+    
+    public void actionPerformed(ActionEvent evt){
+        Object obj = evt.getSource();
+    
+        if(obj == newBTN){
+            gameUI = new GameUI();
+            this.setVisible(false);
+        } // if : newBTN
+        if(obj == loadBTN){
+        
+        } // if : loadBTN
+        if(obj == settingsBTN){
+            options = new OptionMenuUI();
+            this.setVisible(false);
+        } // if : settingsBTN
+    } // actionPerformed
 
-@Override
-/**
- * Handles information to button presses on this UI
- * @param event set of event that can have an action
- */
-public void actionPerformed(ActionEvent event){
-	if(event.getSource()== mybutton1)
-	{
-	mainui = new BoardUI();
-	setVisible(false);
-	}
-	if(event.getSource()== mybutton2)
-	{
-	mainui = new BoardUI();
-	setVisible(false);
-	}
-	if(event.getSource()== mybutton3)
-	{
-	options = new OptionMenuUI();
-	
-	setVisible(false);
-	}	
-}
-
-}
+} // MainMenuUI
