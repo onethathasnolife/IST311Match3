@@ -24,8 +24,8 @@ import static matchesinspace.ImageLibrary.DIRECTORY;
  */
 public final class GameHandler extends JComponent {
     /**
-     * @field gamePanel The GameUI being updated
-     * @field gameBoard The BoardHandler for the GameHandler
+     * @field gameUI The GameUI being updated
+     * @field boardHandler The BoardHandler for the GameHandler
      * @field focus The currently focused piece
      * @field started Tells if game is currently started
      * @field score Score of the game
@@ -38,10 +38,11 @@ public final class GameHandler extends JComponent {
      * @field DIRECTORY Current directory to find information used in this class
      * 
      */
-    private GameUI gamePanel;
-    private BoardHandler gameBoard;
+    private GameUI gameUI;
+    private BoardUI boardUI;
+    private Board gameBoard;
+    private BoardHandler boardHandler;
     private Piece focus;
-    private boolean started;
     private int score;
     private int level;
     private int combo;
@@ -50,18 +51,19 @@ public final class GameHandler extends JComponent {
     public BufferedImage boardImg;
     public ImageIcon boardIcon;
     static final String DIRECTORY   = "src/resources/images/";
+    
     /**
      * Contructor, sets main information about the GameHandler and GameUI
-     * @param gamePanel GameUI which is used and updated
+     * @param gameUI GameUI which is used and updated
      */
-    public GameHandler(GameUI gamePanel){
+    public GameHandler(GameUI gameUI){
         try{
             boardImg = ImageIO.read(new File(DIRECTORY+"board2.png"));
         } // try
         catch(IOException e){
             System.out.println(e.getMessage()+DIRECTORY + "board2.png");
         } // catch
-        this.gamePanel = gamePanel;
+        this.gameUI = gameUI;
         System.out.println("GameHandler - Initializing Game");
         initializeGame();
         System.out.println("GameHandler - Initialized");
@@ -73,29 +75,33 @@ public final class GameHandler extends JComponent {
         this.setPreferredSize(new Dimension(800,600)); 
         this.addMouseListener(new MouseListener(this));
     } // GameHandler : Constructor
+    
     /**
      * Initializes many aspects of the game not found in the constructor
      */
-    public void initializeGame(){     
-        gameBoard = new BoardHandler(this);
+    public void initializeGame(){
+        gameBoard = new Board(this);
+        boardHandler = new BoardHandler(gameBoard, this);
+        boardUI = new BoardUI(gameBoard, this, null);
         
-        while(!gameBoard.isStable()) {
-            gameBoard.removeMatches();
+        while(!boardHandler.isStable()) {
+            boardHandler.removeMatches();
         } // while : !stable
         
         focus = null;
         score = 0;
         combo = 0;
         level = 1; 
-        gamePanel.setScore(score);
-        gamePanel.setCombo(combo);
-        gamePanel.setLevel(level);
-        gamePanel.setRow(-1);
-        gamePanel.setColumn(-1);
+        gameUI.setScore(score);
+        gameUI.setCombo(combo);
+        gameUI.setLevel(level);
+        gameUI.setRow(-1);
+        gameUI.setColumn(-1);
         
         repaint();      
         //Game.soundLibrary.playAudio("fall");
     } // intitializeGame
+    
     /**
      * Used so outside classes can get current object of GameHandler
      * @return returns current GameHandler object
@@ -103,28 +109,26 @@ public final class GameHandler extends JComponent {
     public GameHandler getGameHandler(){
         return this;
     } // getGameHandler
+    
     /**
      * Updates game based on animations and pieces being matched
      */
     public void updateGame(){
-        if (!gameBoard.isStable()) {
-            gameBoard.markDeleted();
-            gameBoard.calculateDrop();
-            gameBoard.setAnimationType(BoardHandler.animationType.CASCADE);
-            gameBoard.animateCascade();
+        if (!boardHandler.isStable()) {
+            boardHandler.markDeleted();
+            boardHandler.calculateDrop();
+            boardUI.setAnimationType(BoardUI.animationType.CASCADE);
+            boardUI.animateCascade();
             //Game.soundLibrary.playAudio("fall");
         } // if : !stable
     } // updateGame
-    /**
-     * Cleans the boards, fills empty pieces, ends cascades
-     */
+    
     public void cleanBoard(){
-        System.out.println("GameHandler - Cleaning Up");
-        gameBoard.applyDrop();
-        gameBoard.fillEmpty();
-        gameBoard.endCascade();
-        System.out.println("GameHandler - Finished Cleaning");
+        boardHandler.applyDrop();
+        boardHandler.fillEmpty();
+        boardHandler.endCascade();
     } // cleanBoard
+    
     /**
      * Adds score to the current score
      * @param points Adds points/score to the current score, increments level if over a certain amount
@@ -133,14 +137,15 @@ public final class GameHandler extends JComponent {
         if((this.score + points) > 1000){
             this.level++;
             this.score = 0;
-            gamePanel.setLevel(this.level);
-            gamePanel.setScore(this.score);
+            gameUI.setLevel(this.level);
+            gameUI.setScore(this.score);
         } // if : score
         else{
             this.score += points;
-            gamePanel.setScore(score);
+            gameUI.setScore(score);
         } // else
     } // addScore
+    
     /**
      * Sets the combo to better understand points to receive
      * @param combo current combo which is used to set
@@ -148,17 +153,18 @@ public final class GameHandler extends JComponent {
     public void setCombo(int combo){
         if(combo > this.combo){
             this.combo = combo;
-            gamePanel.setCombo(combo);
+            gameUI.setCombo(combo);
         } // if : combo
     } // setCombo
+    
     /**
      * When a click is performed, output the current position to the readout
      * @param col Current column of the click
      * @param row Current row of the click
      */
     public void clickPerformed(int col, int row){
-        gamePanel.setColumn(col);
-        gamePanel.setRow(row);
+        gameUI.setColumn(col);
+        gameUI.setRow(row);
         Piece clicked = gameBoard.getPieceAt(row, col);
         if(focus == null){
             focus = clicked;
@@ -185,15 +191,17 @@ public final class GameHandler extends JComponent {
             } // else
         } // else
     } // clickPerformed
+    
     /**
      * Swaps the pieces and calls the animation to happen
      * @param p1 First piece selected
      * @param p2 Second piece being swapped
      */
     private void swapPieces(Piece p1, Piece p2){
-        gameBoard.setAnimationType(BoardHandler.animationType.SWAP);
-        gameBoard.animateSwap(p1, p2);
+        boardUI.setAnimationType(BoardUI.animationType.SWAP);
+        boardUI.animateSwap(p1, p2);
     } // swapPieces
+    
     /**
      * Paints the boardIcon
      */
@@ -201,9 +209,10 @@ public final class GameHandler extends JComponent {
         this.boardIcon.paintIcon(null, g, 0, 0);
         drawPieces(g);
     } // paintComponent
+    
     /**
      * Draws the game pieces based on information found on the pieces objects
-     * @param g Current grahpic being painted
+     * @param g Current graphic being painted
      */
     private void drawPieces(Graphics g){
         for(int row = 0; row < BoardGenerator.HORIZONTAL_PIECES; row++){
@@ -212,5 +221,6 @@ public final class GameHandler extends JComponent {
                 piece.draw(g);
             } // for : col
         } // for : row
-    } // drawPieces    
+    } // drawPieces  
+    
 } // GameHandler
