@@ -7,6 +7,9 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -32,6 +35,7 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
     private JLabel col;
     private JButton glitched;
     GameHandler game;
+    Clip clip;
     
     /**
     * Sets up basic information on the game board
@@ -79,28 +83,33 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         row         = new JLabel("-1",JLabel.CENTER);
         textCol     = new JLabel("column", JLabel.CENTER);
         col         = new JLabel("-1",JLabel.CENTER);
-        //glitched    = new JButton("Glitched");
         
         Border lineBorder = BorderFactory.createLineBorder(Color.black);
         statsPanel.setBorder(lineBorder);
-        statsPanel.setLayout(new GridLayout(6,2));
+        statsPanel.setLayout(new GridLayout(1,6));
         statsPanel.add(textScore);
         statsPanel.add(score);
         statsPanel.add(textLevel);
         statsPanel.add(level);
         statsPanel.add(textCombo);
         statsPanel.add(combo);
+        
+        /* Debugging Info
         statsPanel.add(textRow);
         statsPanel.add(row);
         statsPanel.add(textCol);
         statsPanel.add(col);
-        gamePanel.add(statsPanel, BorderLayout.WEST);
+        */
+        
+        gamePanel.add(statsPanel, BorderLayout.NORTH);
+        gamePanel.setBackground(null);
         
         System.out.println("GameUI - Building Game");
         game = new GameHandler(this); 
         gamePanel.add(game.getGameHandler(), BorderLayout.CENTER);
         System.out.println("GameUI - Game Running");
-        
+        try{clip = AudioSystem.getClip();}catch(Exception e){}
+       
         this.add(gamePanel);
     } // initializeComponents
     /**
@@ -125,8 +134,8 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         //Dimension screenSize = kit.getScreenSize();
         //double screenHeight = screenSize.height*.75;
         //double screenWidth  = screenSize.width*.75;
-        int screenHeight = 625;
-        int screenWidth = 940;
+        int screenHeight = 647;
+        int screenWidth = 800;
         setSize(screenWidth,screenHeight);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -215,6 +224,19 @@ public class GameUI extends JFrame implements ActionListener, KeyListener{
         if(e.getKeyChar()=='q'){
             System.exit(0);
 	} // if : key == 'p'
+        if(e.getKeyChar()=='s'){
+            try{
+                File song = new File("src/resources/sounds/song.wav");
+                
+                if(!clip.isRunning()){
+                    clip.open(AudioSystem.getAudioInputStream(song));
+                    clip.start();
+                } // if : clip
+            } // try
+            catch(Exception ex){
+                ex.printStackTrace(System.out);
+            } // catch
+        }
     } // keyPressed
     
     public void keyReleased(KeyEvent e){

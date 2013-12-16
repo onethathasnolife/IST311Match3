@@ -18,9 +18,10 @@ public class LoadGame {
     public static Piece[][] pieces = new Piece[8][8];
     public static int score = 0;
     public static int level = 0;
+    public static boolean loaded = false;
     /**
-     * Contstructor, Used to start up loading a game
-     * @return Returns the array of pieces making the boad
+     * Constructor, Used to start up loading a game
+     * @return Returns the array of pieces making the board
      */
     public static Piece[][] LoadPieces(){
         System.out.println("Loading");
@@ -37,6 +38,7 @@ public class LoadGame {
             } // for : row
             score = Integer.parseInt(reader.readLine());
             level = Integer.parseInt(reader.readLine());
+            loaded = true;
             reader.close();
         } // try
         catch(Exception e){

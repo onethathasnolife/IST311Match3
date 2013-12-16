@@ -13,7 +13,6 @@ import javax.swing.JFrame;
  */
 public class MainMenuUI extends JFrame implements ActionListener{
      
-    private OptionMenuUI options;
     private GameUI gameUI;
     private JPanel mainMenuPanel;
     private JButton newBTN;
@@ -36,14 +35,14 @@ public class MainMenuUI extends JFrame implements ActionListener{
         System.out.println("MainMenuUI - Running");
     } // MainMenuUI : Constructor
     /**
-     * Initalizes the individual components of the Main Menu
+     * Initializes the individual components of the Main Menu
      */
     public void initializeComponents(){
         setTitle("MATCHES..........IN SPACE!!!!");
         setLocationRelativeTo(null);
         newBTN      = new JButton("New Game");
 	loadBTN     = new JButton("Load Game");
-	settingsBTN = new JButton("Settings");
+	settingsBTN = new JButton("Instructions");
 	
         mainMenuPanel = new JPanel(new GridLayout(3,1));
         mainMenuPanel.add(newBTN, BorderLayout.NORTH);
@@ -69,13 +68,18 @@ public class MainMenuUI extends JFrame implements ActionListener{
             this.dispose();
         } // if : newBTN
         if(obj == loadBTN){
-            gameUI = new GameUI(true);
-            this.setVisible(false);
-            this.dispose();
+            LoadGame.LoadPieces();
+            if(LoadGame.loaded){
+                gameUI = new GameUI(true);
+                this.setVisible(false);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(mainMenuPanel, "No Saves Found");
+            }
         } // if : loadBTN
         if(obj == settingsBTN){
-            options = new OptionMenuUI();
-            this.setVisible(false);
+            JOptionPane.showMessageDialog(mainMenuPanel, "Move the pieces on the board by clicking on two adjacent pieces.\n\nControls:\np - Pause Game\nq - Force Quit");
         } // if : settingsBTN
     } // actionPerformed
 
