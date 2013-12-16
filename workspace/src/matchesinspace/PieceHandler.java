@@ -48,7 +48,13 @@ public class PieceHandler {
         
         return piece;
     } // generateRandom
-    
+    /**
+     * Generates a piece
+     * @param row current row for the piece
+     * @param col current column for the piece
+     * @param type Type related to the piece
+     * @return Returns a piece object
+     */
     public static Piece generatePiece(int row, int col, String type){
         Piece piece = null;
         System.out.println("type g:"+type+".");

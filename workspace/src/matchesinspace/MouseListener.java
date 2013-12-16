@@ -5,7 +5,7 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 /**
  * 
- * Handles mouse input for hte game
+ * Handles mouse input for the game
  *
  */
 public class MouseListener extends MouseInputAdapter{

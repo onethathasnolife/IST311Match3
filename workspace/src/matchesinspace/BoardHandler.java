@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 public class BoardHandler{
     /**
-     * @field pieces[][] 'Board' of pieces, 2 dimensional array of all pieces.
-     * @field p1 first selected piece
-     * @field p2  second selected piece
      * @field matches arraylist of all pieces that are being matched
      * @field MULTIPLIER constant score multiplier
      * @field gameHandler contains information related to gameUI
+     * @field gameBoard the current board to the game being manipulated
      * 
      */
     

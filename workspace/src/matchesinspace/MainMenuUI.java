@@ -12,7 +12,9 @@ import javax.swing.JFrame;
  *
  */
 public class MainMenuUI extends JFrame implements ActionListener{
-     
+     /**
+      * @field gameUI Game UI related to what comes next in the chain of UIs
+      */
     private GameUI gameUI;
     private JPanel mainMenuPanel;
     private JButton newBTN;

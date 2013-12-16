@@ -12,22 +12,36 @@ import java.util.ArrayList;
  * Handles information related to the Board, calls classes needed and acts as an inbetween the UI and Game
  */
 public final class Board {
-    
+    /**
+     * @field pieces[][] array of all pieces
+     * @field board Board generator which creates pieces
+     */
     private static Piece pieces[][];
     BoardGenerator board;
-    
+    /**
+     * Constructor, creates a new board generator
+     * @param game Current game handler for the board
+     */
     public Board(GameHandler game){
         board = new BoardGenerator();    
     } // Board : Constructor
-    
+    /**
+     * Does nothing just to create the object if loaded
+     * @param game Current Game Handler
+     * @param loaded Is the game loaded?
+     */
     public Board(GameHandler game, Boolean loaded){
         
     } // do nothing
-    
+    /**
+     * Inializes the board given a board of pieces
+     */
     public void initialize(){
         pieces = board.getBoard();
     } // initialize
-    
+    /**
+     * If the game is loaded, Loads given previous board
+     */
     public void initializeLoaded(){
         pieces = LoadGame.LoadPieces();
     } // initializeLoaded
